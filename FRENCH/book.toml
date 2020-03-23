@@ -1,0 +1,6 @@
+[book]
+title = "Rust et WebAssembly"
+author = "Le groupe de travail de Rust et WebAssembly"
+
+[output.html]
+additional-js = ["github-button.js"]
