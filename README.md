@@ -1,3 +1,15 @@
+> # Le livre Rust et WebAssembly
+>
+> **This is the french translation of the book "The Rust and WebAssembly Book"**
+>
+> *English Book : [https://github.com/rustwasm/book](https://github.com/rustwasm/book)*
+>
+> Translations are inside `/FRENCH/` folder. Everything else should be remaing as the English Book (except this README.md).
+>
+> Want to help to translate ?
+> Please read the file
+> [/FRENCH/CONTRIBUTING.md](https://github.com/Jimskapt/rust-wasm-book-fr/blob/french-release/FRENCH/CONTRIBUTING.md) !
+
 <div align="center">
 
   <h1>The Rust and WebAssembly Book</h1>
