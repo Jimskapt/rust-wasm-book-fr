@@ -46,10 +46,10 @@ instead of space on punctuation who need this space before (like `:`, `!`, `?`,
 ### Translate flow
 
 *NB : the following term `main translate repository` refers to
-<https://github.com/Jimskapt/rust-book-fr>*
+<https://github.com/Jimskapt/rust-wasm-book-fr>*
 
 01. Open or edit an GitHub issue in the *main translate repository* to report to
-    other that you are working on `ch00-00-introduction`.
+    other that you are working on `ch01-00-introduction`.
       - if someone has reported to work on the same page you want to translate :
         - if its works is *active* : you should work on another page.
         - else : you can fork his/her repo in the following step 02 (instead of
@@ -63,8 +63,8 @@ instead of space on punctuation who need this space before (like `:`, `!`, `?`,
 04. `cd <your_fork>` (go inside your fork folder your previously downloaded)
 05. `git checkout -b <your_new_working_branch_name>` (create your new working
     branch)
-06. Copy the file you want to translate : `/src/ch00-00-introduction.md` into
-    `/FRENCH/src/ch00-00-introduction.md`. Tip : you can use a tool like
+06. Copy the file you want to translate : `/src/introduction.md` into
+    `/FRENCH/src/introduction.md`. Tip : you can use a tool like
     [Castor Whispers](https://github.com/Jimskapt/castor_whispers) in order to
     copy and mass-comment each paragraphs of this file.
 07. Add the text for the link to this file in the `/FRENCH/src/SUMMARY.md`.
@@ -96,7 +96,7 @@ instead of space on punctuation who need this space before (like `:`, `!`, `?`,
 
 ### Update your fork with another fork
 
-01. `git remote add english-book https://github.com/rust-lang/book.git`
+01. `git remote add english-book https://github.com/rustwasm/book.git`
     (Add source of the *English main repository*)
 02. `git fetch english-book` (fetching the latest changes from the *English main
     repository*)
