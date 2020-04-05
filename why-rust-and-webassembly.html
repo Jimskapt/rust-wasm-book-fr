@@ -1,9 +1,11 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js">
+<html lang="en" class="sidebar-visible no-js light">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Why Rust and WebAssembly? - Rust and WebAssembly</title>
+        <title>🚧 Pourquoi Rust et le WebAssembly ? - Rust et WebAssembly</title>
+        
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,11 +32,11 @@
 
         
     </head>
-    <body class="light">
+    <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "";
-            var default_theme = "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -56,10 +58,13 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme + ' js';
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
@@ -75,57 +80,16 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="why-rust-and-webassembly.html" class="active"><strong aria-hidden="true">2.</strong> Why Rust and WebAssembly?</a></li><li><a href="background-and-concepts.html"><strong aria-hidden="true">3.</strong> Background And Concepts</a></li><li><ol class="section"><li><a href="what-is-webassembly.html"><strong aria-hidden="true">3.1.</strong> What is WebAssembly?</a></li><li class="spacer"></li></ol></li><li><a href="game-of-life/introduction.html"><strong aria-hidden="true">4.</strong> Tutorial</a></li><li><ol class="section"><li><a href="game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> Setup</a></li><li><a href="game-of-life/hello-world.html"><strong aria-hidden="true">4.2.</strong> Hello, World!</a></li><li><a href="game-of-life/rules.html"><strong aria-hidden="true">4.3.</strong> Rules</a></li><li><a href="game-of-life/implementing.html"><strong aria-hidden="true">4.4.</strong> Implementing Life</a></li><li><a href="game-of-life/testing.html"><strong aria-hidden="true">4.5.</strong> Testing Life</a></li><li><a href="game-of-life/debugging.html"><strong aria-hidden="true">4.6.</strong> Debugging</a></li><li><a href="game-of-life/interactivity.html"><strong aria-hidden="true">4.7.</strong> Adding Interactivity</a></li><li><a href="game-of-life/time-profiling.html"><strong aria-hidden="true">4.8.</strong> Time Profiling</a></li><li><a href="game-of-life/code-size.html"><strong aria-hidden="true">4.9.</strong> Shrinking .wasm Size</a></li><li><a href="game-of-life/publishing-to-npm.html"><strong aria-hidden="true">4.10.</strong> Publishing to npm</a></li><li class="spacer"></li></ol></li><li><a href="reference/index.html"><strong aria-hidden="true">5.</strong> Reference</a></li><li><ol class="section"><li><a href="reference/crates.html"><strong aria-hidden="true">5.1.</strong> Crates You Should Know</a></li><li><a href="reference/tools.html"><strong aria-hidden="true">5.2.</strong> Tools You Should Know</a></li><li><a href="reference/project-templates.html"><strong aria-hidden="true">5.3.</strong> Project Templates</a></li><li><a href="reference/debugging.html"><strong aria-hidden="true">5.4.</strong> Debugging</a></li><li><a href="reference/time-profiling.html"><strong aria-hidden="true">5.5.</strong> Time Profiling</a></li><li><a href="reference/code-size.html"><strong aria-hidden="true">5.6.</strong> Shrinking .wasm Size</a></li><li><a href="reference/js-ffi.html"><strong aria-hidden="true">5.7.</strong> JavaScript Interoperation</a></li><li><a href="reference/which-crates-work-with-wasm.html"><strong aria-hidden="true">5.8.</strong> Which Crates Will Work Off-the-Shelf with WebAssembly?</a></li><li><a href="reference/add-wasm-support-to-crate.html"><strong aria-hidden="true">5.9.</strong> How to Add WebAssembly Support to a General-Purpose Crate</a></li><li><a href="reference/deploying-to-production.html"><strong aria-hidden="true">5.10.</strong> Deploying Rust and WebAssembly to Production</a></li></ol></li></ol>
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="why-rust-and-webassembly.html" class="active"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <style>
-  header.warning {
-    background-color: rgb(242, 222, 222);
-    border-bottom-color: rgb(238, 211, 215);
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom-style: solid;
-    border-bottom-width: 0.666667px;
-    border-image-outset: 0 0 0 0;
-    border-image-repeat: stretch stretch;
-    border-image-slice: 100% 100% 100% 100%;
-    border-image-source: none;
-    border-image-width: 1 1 1 1;
-    border-left-color: rgb(238, 211, 215);
-    border-left-style: solid;
-    border-left-width: 0.666667px;
-    border-right-color: rgb(238, 211, 215);
-    border-right-style: solid;
-    border-right-width: 0.666667px;
-    border-top-color: rgb(238, 211, 215);
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-top-style: solid;
-    border-top-width: 0.666667px;
-    color: rgb(185, 74, 72);
-    margin-bottom: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 30px;
-    padding-bottom: 8px;
-    padding-left: 14px;
-    padding-right: 35px;
-    padding-top: 8px;
-    text-align: center;
-  }
-</style>
-<header class='warning'>
-  This is <strong>unpublished</strong> documentation of
-  working with Rust and WebAssembly, the published documentation is available
-  <a href="https://rustwasm.github.io/docs/book/">
-    on the main Rust and WebAssembly documentation site
-  </a>. Features documented here may not be available in released versions of
-  tooling for Rust and WebAssembly.
-</header>
-
+                
                 <div id="menu-bar" class="menu-bar">
                     <div id="menu-bar-sticky-container">
                         <div class="left-buttons">
@@ -149,7 +113,7 @@
                             
                         </div>
 
-                        <h1 class="menu-title">Rust and WebAssembly</h1> 
+                        <h1 class="menu-title">Rust et WebAssembly</h1>
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -184,40 +148,106 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#why-rust-and-webassembly" id="why-rust-and-webassembly"><h1>Why Rust and WebAssembly?</h1></a>
-<a class="header" href="#low-level-control-with-high-level-ergonomics" id="low-level-control-with-high-level-ergonomics"><h2>Low-Level Control with High-Level Ergonomics</h2></a>
-<p>JavaScript Web applications struggle to attain and retain reliable performance.
+                        <blockquote>
+<h1><a class="header" href="#-attention-peinture-fraîche-" id="-attention-peinture-fraîche-">🚧 Attention, peinture fraîche !</a></h1>
+<p>Cette page a été traduite par une seule personne et n'a pas été relue et
+vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
+erronées, être formulées maladroitement, ou contenir d'autre types de fautes.</p>
+</blockquote>
+<!--
+# Why Rust and WebAssembly?
+-->
+<h1><a class="header" href="#pourquoi-rust-et-le-webassembly-" id="pourquoi-rust-et-le-webassembly-">Pourquoi Rust et le WebAssembly ?</a></h1>
+<!--
+## Low-Level Control with High-Level Ergonomics
+-->
+<h2><a class="header" href="#ils-offrent-un-contrôle-de-bas-niveau-mais-avec-une-ergonomie-de-haut-niveau" id="ils-offrent-un-contrôle-de-bas-niveau-mais-avec-une-ergonomie-de-haut-niveau">Ils offrent un contrôle de bas-niveau, mais avec une ergonomie de haut-niveau</a></h2>
+<!--
+JavaScript Web applications struggle to attain and retain reliable performance.
 JavaScript's dynamic type system and garbage collection pauses don't help.
 Seemingly small code changes can result in drastic performance regressions if
-you accidentally wander off the JIT's happy path.</p>
-<p>Rust gives programmers low-level control and reliable performance. It is free
+you accidentally wander off the JIT's happy path.
+-->
+<p>Les applications web en Javascript ont du mal à atteindre et conserver des
+performances satisfaisantes. Le système de type dynamique du Javascript et les
+interruptions pour le ramasse-miette n'aident pas non plus. Des petits
+changements en apparance mineurs peuvent impliquer de grosses régressions de
+performances si vous écartez de la trajectoire prédit par le système
+Just-In-Time.</p>
+<!--
+Rust gives programmers low-level control and reliable performance. It is free
 from the non-deterministic garbage collection pauses that plague JavaScript.
-Programmers have control over indirection, monomorphization, and memory layout.</p>
-<a class="header" href="#small-wasm-sizes" id="small-wasm-sizes"><h2>Small <code>.wasm</code> Sizes</h2></a>
-<p>Code size is incredibly important since the <code>.wasm</code> must be downloaded over the
-network. Rust lacks a runtime, enabling small <code>.wasm</code> sizes because there is no
+Programmers have control over indirection, monomorphization, and memory layout.
+-->
+<p>Rust offre aux développeurs un contrôle du bas-niveau et des performances
+efficaces. Il n'est pas soumis aux interruptions du ramasse-miettes qui accable
+le Javascript. Les développeurs ont le contrôle sur l'indirection, la
+monomorphisation, et l'utilisation de la mémoire.</p>
+<!--
+## Small `.wasm` Sizes
+-->
+<h2><a class="header" href="#ils-produisent-des-wasm-légers" id="ils-produisent-des-wasm-légers">Ils produisent des <code>.wasm</code> légers</a></h2>
+<!--
+Code size is incredibly important since the `.wasm` must be downloaded over the
+network. Rust lacks a runtime, enabling small `.wasm` sizes because there is no
 extra bloat included like a garbage collector. You only pay (in code size) for
-the functions you actually use.</p>
-<a class="header" href="#do-not-rewrite-everything" id="do-not-rewrite-everything"><h2>Do <em>Not</em> Rewrite Everything</h2></a>
-<p>Existing code bases don't need to be thrown away. You can start by porting your
+the functions you actually use.
+-->
+<p>La taille du code est très importante car le <code>.wasm</code> doit être téléchargé à
+partir du réseau. Rust n'a pas d'environnement d'exécution, ce qui permet
+d'obtenir des <code>.wasm</code> légers car il n'a pas de charge supplémentaire comme par
+exemple un ramasse-miettes. Vous ne payez (en terme de taille de code) que pour
+les fonctions que vous utilisez vraiment.</p>
+<!--
+## Do *Not* Rewrite Everything
+-->
+<h2><a class="header" href="#il-nest-pas-nécessaire-de-tout-ré-écrire" id="il-nest-pas-nécessaire-de-tout-ré-écrire">Il n'est <em>pas</em> nécessaire de tout ré-écrire</a></h2>
+<!--
+Existing code bases don't need to be thrown away. You can start by porting your
 most performance-sensitive JavaScript functions to Rust to gain immediate
-benefits. And you can even stop there if you want to.</p>
-<a class="header" href="#plays-well-with-others" id="plays-well-with-others"><h2>Plays Well With Others</h2></a>
-<p>Rust and WebAssembly integrates with existing JavaScript tooling. It supports
+benefits. And you can even stop there if you want to.
+-->
+<p>La base de code existante n'a pas besoin d'être jetée. Vous pouvez commencer par
+porter en Rust vos fonctions Javascript les plus critiques pour les performances
+pour obtenir immédiatement des gains de performances. Et vous pouvez vous y
+arrêter là si vous le souhaitez.</p>
+<!--
+## Plays Well With Others
+-->
+<h2><a class="header" href="#ils-saccommodent-bien-avec-les-autres" id="ils-saccommodent-bien-avec-les-autres">Ils s'accommodent bien avec les autres</a></h2>
+<!--
+Rust and WebAssembly integrates with existing JavaScript tooling. It supports
 ECMAScript modules and you can continue using the tooling you already love, like
-npm, Webpack, and Greenkeeper.</p>
-<a class="header" href="#the-amenities-you-expect" id="the-amenities-you-expect"><h2>The Amenities You Expect</h2></a>
-<p>Rust has the modern amenities that developers have come to expect, such as:</p>
+npm, Webpack, and Greenkeeper.
+-->
+<p>Rust et WebAssembly s'intègrent dans les outils existants en Javascript. Ils
+supportent les modules ECMAScript et vous pouvez continuer à utiliser vos outils
+préférés, comme par exemple npm ou Webpack.</p>
+<!--
+## The Amenities You Expect
+-->
+<h2><a class="header" href="#ils-offrent-des-commodités-dont-vous-avez-besoin" id="ils-offrent-des-commodités-dont-vous-avez-besoin">Ils offrent des commodités dont vous avez besoin</a></h2>
+<!--
+Rust has the modern amenities that developers have come to expect, such as:
+-->
+<p>Rust offre des services que les développeurs attendent implicitement, comme :</p>
+<!--
+* strong package management with `cargo`,
+-->
 <ul>
-<li>
-<p>strong package management with <code>cargo</code>,</p>
-</li>
-<li>
-<p>expressive (and zero-cost) abstractions,</p>
-</li>
-<li>
-<p>and a welcoming community! 😊</p>
-</li>
+<li>une gestion de packets efficiente avec <code>cargo</code>,</li>
+</ul>
+<!--
+* expressive (and zero-cost) abstractions,
+-->
+<ul>
+<li>des abstractions explicites (et sans coût),</li>
+</ul>
+<!--
+* and a welcoming community! 😊
+-->
+<ul>
+<li>et une communauté chaleureuse ! 😊</li>
 </ul>
 
                     </main>
@@ -225,15 +255,11 @@ npm, Webpack, and Greenkeeper.</p>
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="translation-terms.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="background-and-concepts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -243,15 +269,11 @@ npm, Webpack, and Greenkeeper.</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="translation-terms.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a href="background-and-concepts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
@@ -259,6 +281,14 @@ npm, Webpack, and Greenkeeper.</p>
 
         
 
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
         
 
         
@@ -274,6 +304,8 @@ npm, Webpack, and Greenkeeper.</p>
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="github-button.js"></script>
         
 
         
