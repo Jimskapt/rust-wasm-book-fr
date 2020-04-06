@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>🚧 Introduction - Rust et WebAssembly</title>
+        <title>🚧 Le contexte et les concepts - Rust et WebAssembly</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="why-rust-and-webassembly.html"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li><li class="expanded "><a href="background-and-concepts.html"><strong aria-hidden="true">3.</strong> 🚧 Le contexte et les concepts</a></li><li><ol class="section"><li class="expanded "><a href="what-is-webassembly.html"><strong aria-hidden="true">3.1.</strong> 🚧 Qu'est-ce que le WebAssembly ?</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="game-of-life/introduction.html"><strong aria-hidden="true">4.</strong> 🚧 Tutoriel</a></li><li><ol class="section"><li class="expanded "><a href="game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> 🚧 Réglages</a></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="why-rust-and-webassembly.html"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li><li class="expanded "><a href="background-and-concepts.html" class="active"><strong aria-hidden="true">3.</strong> 🚧 Le contexte et les concepts</a></li><li><ol class="section"><li class="expanded "><a href="what-is-webassembly.html"><strong aria-hidden="true">3.1.</strong> 🚧 Qu'est-ce que le WebAssembly ?</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="game-of-life/introduction.html"><strong aria-hidden="true">4.</strong> 🚧 Tutoriel</a></li><li><ol class="section"><li class="expanded "><a href="game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> 🚧 Réglages</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,103 +155,28 @@ vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
 erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
 </blockquote>
 <!--
-# Rust 🦀 and WebAssembly 🕸
+# Background and Concepts
 -->
-<h1><a class="header" href="#rust--et-webassembly-" id="rust--et-webassembly-">Rust 🦀 et WebAssembly 🕸</a></h1>
+<h1><a class="header" href="#le-contexte-et-les-concepts" id="le-contexte-et-les-concepts">Le contexte et les concepts</a></h1>
 <!--
-This small book describes how to use [Rust][] and [WebAssembly][] together.
+This section provides the context necessary for diving into Rust and WebAssembly
+development.
 -->
-<p>Ce petit livre décrit comment utiliser ensemble <a href="https://www.rust-lang.org">Rust</a> et <a href="https://webassembly.org/">WebAssembly</a>.</p>
-<p>Vous êtes actuellement sur la version du livre traduite en Français de
-<a href="https://rustwasm.github.io/docs/book/">la version en Anglais</a>.</p>
-<!--
-## Who is this book for?
--->
-<h2><a class="header" href="#a-qui-est-destiné-ce-livre-" id="a-qui-est-destiné-ce-livre-">A qui est destiné ce livre ?</a></h2>
-<!--
-This book is for anyone interested in compiling Rust to WebAssembly for fast,
-reliable code on the Web. You should know some Rust, and be familiar with
-JavaScript, HTML, and CSS. You don't need to be an expert in any of them.
--->
-<p>Ce livre est écrit pour celles et ceux qui s'intéressent à compiler du code en
-Rust pour WebAssembly afin d'utiliser du code rapide et fiable sur le Web. Vous
-devez déjà connaître le de Rust, et être famillier·e avec le Javascript, HTML
-et CSS. Mais vous n'avez pas non plus besoin d'être un·e expert·e avec chacun.</p>
-<!--
-Don't know Rust yet? [Start with *The Rust Programming Language* first.][trpl]
--->
-<p>Vous ne connaissez pas encore le Rust ? <a href="https://jimskapt.github.io/rust-book-fr/">Commencez d'abord par parcourir le
-livre <em>Le langage de programmation Rust</em></a> ou alors <a href="https://doc.rust-lang.org/book/">sa version
-Anglaise</a>.</p>
-<!--
-Don't know JavaScript, HTML, or CSS? [Learn about them on MDN.][mdn]
--->
-<p>Vous ne connaissez pas le Javascript, le HTMl, ou le CSS ?
-<a href="https://developer.mozilla.org/en-US/docs/Learn">En savoir plus sur eux sur le MDN</a>.</p>
-<!--
-## How to read this book
--->
-<h2><a class="header" href="#comment-lire-ce-livre" id="comment-lire-ce-livre">Comment lire ce livre</a></h2>
-<!--
-You should read [the motivation for using Rust and WebAssembly
-together][why-rust-wasm], as well as familiarize yourself with the [background
-and concepts][background] first.
--->
-<p>Vous devriez commencer par lire <a href="./why-rust-and-webassembly.html">les raisons d'utiliser Rust et WebAssembly
-ensemble</a>, et vous familliariser avec le <a href="./background-and-concepts.html">contexte et les
-concepts</a>.</p>
-<!--
-The [tutorial][] is written to be read from start to finish. You should follow
-along: writing, compiling, and running the tutorial's code yourself. If you
-haven't used Rust and WebAssembly together before, do the tutorial!
--->
-<p>Le tutoriel est écrit pour être lu du début à la fin. Vous devez donc suivre sa
-progression : écrire, compiler et exécuter le code du tutorial vous aussi. Si
-vous n'avez jamais utilisé Rust et WebAssembly ensemble, suivez ce tutoriel !</p>
-<!--
-The [reference sections][reference] may be perused in any order.
--->
-<p>Les <a href="./reference/index.html">sections références</a> peuvent toutefois être consultées dans
-n'importe quel ordre.</p>
-<!--
-> **💡 Tip:** You can search through this book by clicking on the 🔍 icon at the
-> top of the page, or by pressing the `s` key.
--->
-<blockquote>
-<p><strong>💡 Astuce :</strong> Vous pouvez rechercher dans ce livre en cliquant sur
-l'icône 🔍 en haut de la page, ou en appuyant sur la touche <code>s</code> à tout moment.</p>
-</blockquote>
-<!--
-## Contributing to this book
--->
-<h2><a class="header" href="#contribution-à-ce-livre" id="contribution-à-ce-livre">Contribution à ce livre</a></h2>
-<!--
-This book is open source! Find a typo? Did we overlook something? [**Send us a
-pull request!**][repo]
--->
-<p>Ce livre est open source ! Si vous trouvez une faute, <a href="https://github.com/Jimskapt/rust-wasm-book-fr"><strong>vous pouvez nous
-envoyer une pull request</strong></a>. Si nous avons oublié quelque chose,
-<a href="https://github.com/rustwasm/book"><strong>envoyez une pull request sur la version Anglaise</strong></a> !</p>
-<!--
-[Rust]: https://www.rust-lang.org
-[WebAssembly]: https://webassembly.org/
-[trpl]: https://doc.rust-lang.org/book/
-[mdn]: https://developer.mozilla.org/en-US/docs/Learn
-[why-rust-wasm]: ./why-rust-and-webassembly.html
-[background]: ./background-and-concepts.html
-[tutorial]: ./game-of-life/introduction.html
-[reference]: ./reference/index.html
-[repo]: https://github.com/rustwasm/book
--->
+<p>Cette section explique le contexte nécessaire pour comprendre le développement
+en Rust et WebAssembly.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="why-rust-and-webassembly.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="translation-terms.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="what-is-webassembly.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -263,9 +188,13 @@ envoyer une pull request</strong></a>. Si nous avons oublié quelque chose,
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a href="why-rust-and-webassembly.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a href="translation-terms.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="what-is-webassembly.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

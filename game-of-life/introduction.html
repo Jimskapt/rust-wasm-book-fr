@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>🚧 Introduction - Rust et WebAssembly</title>
+        <title>🚧 Tutoriel - Rust et WebAssembly</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -11,21 +11,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -35,7 +35,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
         </script>
 
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="why-rust-and-webassembly.html"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li><li class="expanded "><a href="background-and-concepts.html"><strong aria-hidden="true">3.</strong> 🚧 Le contexte et les concepts</a></li><li><ol class="section"><li class="expanded "><a href="what-is-webassembly.html"><strong aria-hidden="true">3.1.</strong> 🚧 Qu'est-ce que le WebAssembly ?</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="game-of-life/introduction.html"><strong aria-hidden="true">4.</strong> 🚧 Tutoriel</a></li><li><ol class="section"><li class="expanded "><a href="game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> 🚧 Réglages</a></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="../translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="../why-rust-and-webassembly.html"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li><li class="expanded "><a href="../background-and-concepts.html"><strong aria-hidden="true">3.</strong> 🚧 Le contexte et les concepts</a></li><li><ol class="section"><li class="expanded "><a href="../what-is-webassembly.html"><strong aria-hidden="true">3.1.</strong> 🚧 Qu'est-ce que le WebAssembly ?</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="../game-of-life/introduction.html" class="active"><strong aria-hidden="true">4.</strong> 🚧 Tutoriel</a></li><li><ol class="section"><li class="expanded "><a href="../game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> 🚧 Réglages</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -116,7 +116,7 @@
                         <h1 class="menu-title">Rust et WebAssembly</h1>
 
                         <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
                             
@@ -155,103 +155,97 @@ vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
 erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
 </blockquote>
 <!--
-# Rust 🦀 and WebAssembly 🕸
+# Tutorial: Conway's Game of Life
 -->
-<h1><a class="header" href="#rust--et-webassembly-" id="rust--et-webassembly-">Rust 🦀 et WebAssembly 🕸</a></h1>
+<h1><a class="header" href="#tutoriel--le-jeu-de-la-vie" id="tutoriel--le-jeu-de-la-vie">Tutoriel : le jeu de la vie</a></h1>
 <!--
-This small book describes how to use [Rust][] and [WebAssembly][] together.
+This is a tutorial that implements [Conway's Game of Life][gol] in Rust and
+WebAssembly.
 -->
-<p>Ce petit livre décrit comment utiliser ensemble <a href="https://www.rust-lang.org">Rust</a> et <a href="https://webassembly.org/">WebAssembly</a>.</p>
-<p>Vous êtes actuellement sur la version du livre traduite en Français de
-<a href="https://rustwasm.github.io/docs/book/">la version en Anglais</a>.</p>
+<p>Ceci est un tutoriel qui va implémenter <a href="https://fr.wikipedia.org/wiki/Jeu_de_la_vie">le Jeu de la vie, de Conway</a> en
+Rust et WebAssembly.</p>
 <!--
-## Who is this book for?
+[gol]: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 -->
-<h2><a class="header" href="#a-qui-est-destiné-ce-livre-" id="a-qui-est-destiné-ce-livre-">A qui est destiné ce livre ?</a></h2>
 <!--
-This book is for anyone interested in compiling Rust to WebAssembly for fast,
-reliable code on the Web. You should know some Rust, and be familiar with
-JavaScript, HTML, and CSS. You don't need to be an expert in any of them.
+## Who is this tutorial for?
 -->
-<p>Ce livre est écrit pour celles et ceux qui s'intéressent à compiler du code en
-Rust pour WebAssembly afin d'utiliser du code rapide et fiable sur le Web. Vous
-devez déjà connaître le de Rust, et être famillier·e avec le Javascript, HTML
-et CSS. Mais vous n'avez pas non plus besoin d'être un·e expert·e avec chacun.</p>
+<h2><a class="header" href="#a-qui-sadresse-ce-tutoriel-" id="a-qui-sadresse-ce-tutoriel-">A qui s'adresse ce tutoriel ?</a></h2>
 <!--
-Don't know Rust yet? [Start with *The Rust Programming Language* first.][trpl]
+This tutorial is for anyone who already has basic Rust and JavaScript
+experience, and wants to learn how to use Rust, WebAssembly, and JavaScript
+together.
 -->
-<p>Vous ne connaissez pas encore le Rust ? <a href="https://jimskapt.github.io/rust-book-fr/">Commencez d'abord par parcourir le
-livre <em>Le langage de programmation Rust</em></a> ou alors <a href="https://doc.rust-lang.org/book/">sa version
-Anglaise</a>.</p>
+<p>Ce tutoriel a été créé pour ceux qui ont déjà une expérience de base avec Rust
+et le JavaScript, et qui souhaitent en savoir plus sur l'utilisation conjointe
+de Rust, WebAssembly, et JavaScript.</p>
 <!--
-Don't know JavaScript, HTML, or CSS? [Learn about them on MDN.][mdn]
+You should be comfortable reading and writing basic Rust, JavaScript, and
+HTML. You definitely do not need to be an expert.
 -->
-<p>Vous ne connaissez pas le Javascript, le HTMl, ou le CSS ?
-<a href="https://developer.mozilla.org/en-US/docs/Learn">En savoir plus sur eux sur le MDN</a>.</p>
+<p>Vous devez donc être à l'aise pour lire et écrire du code Rust, JavaScript, et
+HTML. Toutefois, vous n'avez vraiment pas besoin d'en être un expert.</p>
 <!--
-## How to read this book
+## What will I learn?
 -->
-<h2><a class="header" href="#comment-lire-ce-livre" id="comment-lire-ce-livre">Comment lire ce livre</a></h2>
+<h2><a class="header" href="#quallons-nous-apprendre-" id="quallons-nous-apprendre-">Qu'allons-nous apprendre ?</a></h2>
 <!--
-You should read [the motivation for using Rust and WebAssembly
-together][why-rust-wasm], as well as familiarize yourself with the [background
-and concepts][background] first.
+* How to set up a Rust toolchain for compiling to WebAssembly.
 -->
-<p>Vous devriez commencer par lire <a href="./why-rust-and-webassembly.html">les raisons d'utiliser Rust et WebAssembly
-ensemble</a>, et vous familliariser avec le <a href="./background-and-concepts.html">contexte et les
-concepts</a>.</p>
+<ul>
+<li>Comment régler une toolchain de Rust pour compiler en WebAssembly.</li>
+</ul>
 <!--
-The [tutorial][] is written to be read from start to finish. You should follow
-along: writing, compiling, and running the tutorial's code yourself. If you
-haven't used Rust and WebAssembly together before, do the tutorial!
+* A workflow for developing polyglot programs made from Rust, WebAssembly,
+  JavaScript, HTML, and CSS.
 -->
-<p>Le tutoriel est écrit pour être lu du début à la fin. Vous devez donc suivre sa
-progression : écrire, compiler et exécuter le code du tutorial vous aussi. Si
-vous n'avez jamais utilisé Rust et WebAssembly ensemble, suivez ce tutoriel !</p>
+<ul>
+<li>Suivre une procédure pour développer des programmes polyglottes constitués de
+Rust, WebAssembly, HTML et CSS.</li>
+</ul>
 <!--
-The [reference sections][reference] may be perused in any order.
+* How to design APIs to take maximum advantage of both Rust and WebAssembly's
+  strengths and also JavaScript's strengths.
 -->
-<p>Les <a href="./reference/index.html">sections références</a> peuvent toutefois être consultées dans
-n'importe quel ordre.</p>
+<ul>
+<li>Comment concevoir des API pour profiter des avantages à la fois de Rust et de
+de WebAssembly et aussi des avantages de JavaScript.</li>
+</ul>
 <!--
-> **💡 Tip:** You can search through this book by clicking on the 🔍 icon at the
-> top of the page, or by pressing the `s` key.
+* How to debug WebAssembly modules compiled from Rust.
 -->
-<blockquote>
-<p><strong>💡 Astuce :</strong> Vous pouvez rechercher dans ce livre en cliquant sur
-l'icône 🔍 en haut de la page, ou en appuyant sur la touche <code>s</code> à tout moment.</p>
-</blockquote>
+<ul>
+<li>Comment déboguer les modules en WebAssembly, compilés avec Rust.</li>
+</ul>
 <!--
-## Contributing to this book
+* How to time profile Rust and WebAssembly programs to make them faster.
 -->
-<h2><a class="header" href="#contribution-à-ce-livre" id="contribution-à-ce-livre">Contribution à ce livre</a></h2>
+<ul>
+<li>Comment créer un profil chronologique de programmes en Rust et WebAssembly
+pour améliorer leurs performances.</li>
+</ul>
 <!--
-This book is open source! Find a typo? Did we overlook something? [**Send us a
-pull request!**][repo]
+* How to size profile Rust and WebAssembly programs to make `.wasm` binaries
+  smaller and faster to download over the network.
 -->
-<p>Ce livre est open source ! Si vous trouvez une faute, <a href="https://github.com/Jimskapt/rust-wasm-book-fr"><strong>vous pouvez nous
-envoyer une pull request</strong></a>. Si nous avons oublié quelque chose,
-<a href="https://github.com/rustwasm/book"><strong>envoyez une pull request sur la version Anglaise</strong></a> !</p>
-<!--
-[Rust]: https://www.rust-lang.org
-[WebAssembly]: https://webassembly.org/
-[trpl]: https://doc.rust-lang.org/book/
-[mdn]: https://developer.mozilla.org/en-US/docs/Learn
-[why-rust-wasm]: ./why-rust-and-webassembly.html
-[background]: ./background-and-concepts.html
-[tutorial]: ./game-of-life/introduction.html
-[reference]: ./reference/index.html
-[repo]: https://github.com/rustwasm/book
--->
+<ul>
+<li>Comment établir un profil de poids des programmes en Rust et WebAssembly pour
+réduire la taille des binaires <code>.wasm</code> et ainsi accélérer leur téléchargement
+via le réseau.</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="../what-is-webassembly.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="translation-terms.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../game-of-life/setup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -263,9 +257,13 @@ envoyer une pull request</strong></a>. Si nous avons oublié quelque chose,
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a href="../what-is-webassembly.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a href="translation-terms.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../game-of-life/setup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -288,18 +286,18 @@ envoyer une pull request</strong></a>. Si nous avons oublié quelque chose,
         
 
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         
-        <script type="text/javascript" src="github-button.js"></script>
+        <script type="text/javascript" src="../github-button.js"></script>
         
 
         

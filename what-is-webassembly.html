@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>🚧 Introduction - Rust et WebAssembly</title>
+        <title>🚧 Qu'est-ce que le WebAssembly ? - Rust et WebAssembly</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="why-rust-and-webassembly.html"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li><li class="expanded "><a href="background-and-concepts.html"><strong aria-hidden="true">3.</strong> 🚧 Le contexte et les concepts</a></li><li><ol class="section"><li class="expanded "><a href="what-is-webassembly.html"><strong aria-hidden="true">3.1.</strong> 🚧 Qu'est-ce que le WebAssembly ?</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="game-of-life/introduction.html"><strong aria-hidden="true">4.</strong> 🚧 Tutoriel</a></li><li><ol class="section"><li class="expanded "><a href="game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> 🚧 Réglages</a></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="why-rust-and-webassembly.html"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li><li class="expanded "><a href="background-and-concepts.html"><strong aria-hidden="true">3.</strong> 🚧 Le contexte et les concepts</a></li><li><ol class="section"><li class="expanded "><a href="what-is-webassembly.html" class="active"><strong aria-hidden="true">3.1.</strong> 🚧 Qu'est-ce que le WebAssembly ?</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="game-of-life/introduction.html"><strong aria-hidden="true">4.</strong> 🚧 Tutoriel</a></li><li><ol class="section"><li class="expanded "><a href="game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> 🚧 Réglages</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,103 +155,118 @@ vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
 erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
 </blockquote>
 <!--
-# Rust 🦀 and WebAssembly 🕸
+# What is WebAssembly?
 -->
-<h1><a class="header" href="#rust--et-webassembly-" id="rust--et-webassembly-">Rust 🦀 et WebAssembly 🕸</a></h1>
+<h1><a class="header" href="#quest-ce-que-le-webassembly-" id="quest-ce-que-le-webassembly-">Qu'est-ce que le WebAssembly ?</a></h1>
 <!--
-This small book describes how to use [Rust][] and [WebAssembly][] together.
+WebAssembly (wasm) is a simple machine model and executable format with an
+[extensive specification]. It is designed to be portable, compact, and execute
+at or near native speeds.
 -->
-<p>Ce petit livre décrit comment utiliser ensemble <a href="https://www.rust-lang.org">Rust</a> et <a href="https://webassembly.org/">WebAssembly</a>.</p>
-<p>Vous êtes actuellement sur la version du livre traduite en Français de
-<a href="https://rustwasm.github.io/docs/book/">la version en Anglais</a>.</p>
+<p>Le WebAssembly (wasm) est un modèle de système simple et un format d'exécutable
+qui est décrit par des <a href="https://webassembly.github.io/spec/">spécifications détaillées</a>. Il
+est conçu pour être portable, compacte, et s'exécuter presque aussi vite que si
+c'était un programme natif.</p>
 <!--
-## Who is this book for?
+As a programming language, WebAssembly is comprised of two formats that
+represent the same structures, albeit in different ways:
 -->
-<h2><a class="header" href="#a-qui-est-destiné-ce-livre-" id="a-qui-est-destiné-ce-livre-">A qui est destiné ce livre ?</a></h2>
+<p>En tant que langage de programmation, WebAssembly est constitué de deux formats
+qui représentent les mêmes structures, bien qu'étant dans des formats
+différents :</p>
 <!--
-This book is for anyone interested in compiling Rust to WebAssembly for fast,
-reliable code on the Web. You should know some Rust, and be familiar with
-JavaScript, HTML, and CSS. You don't need to be an expert in any of them.
+1. The `.wat` text format (called `wat` for "**W**eb**A**ssembly **T**ext") uses
+   [S-expressions], and bears some resemblance to the Lisp family of languages
+   like Scheme and Clojure.
 -->
-<p>Ce livre est écrit pour celles et ceux qui s'intéressent à compiler du code en
-Rust pour WebAssembly afin d'utiliser du code rapide et fiable sur le Web. Vous
-devez déjà connaître le de Rust, et être famillier·e avec le Javascript, HTML
-et CSS. Mais vous n'avez pas non plus besoin d'être un·e expert·e avec chacun.</p>
+<ol>
+<li>Le format textuel <code>.wat</code> (qui sont les initiales de &quot;<strong>W</strong>eb<strong>A</strong>ssembly
+<strong>T</strong>ext&quot;) qui utilise les <a href="https://en.wikipedia.org/wiki/S-expression">expressions symboliques</a>, et
+ressemble aux langages de la famille Lisp comme Scheme et Clojure.</li>
+</ol>
 <!--
-Don't know Rust yet? [Start with *The Rust Programming Language* first.][trpl]
+2. The `.wasm` binary format is lower-level and intended for consumption
+   directly by wasm virtual machines. It is conceptually similar to ELF and
+   Mach-O.
 -->
-<p>Vous ne connaissez pas encore le Rust ? <a href="https://jimskapt.github.io/rust-book-fr/">Commencez d'abord par parcourir le
-livre <em>Le langage de programmation Rust</em></a> ou alors <a href="https://doc.rust-lang.org/book/">sa version
-Anglaise</a>.</p>
+<ol start="2">
+<li>Le format binaire <code>.wasm</code> qui est plus bas-niveau et est destiné à être
+utilisé par des machines virtuelles pour le wasm. Il est techniquement
+similaire à l'ELF et au Mach-O.</li>
+</ol>
 <!--
-Don't know JavaScript, HTML, or CSS? [Learn about them on MDN.][mdn]
+For reference, here is a factorial function in `wat`:
 -->
-<p>Vous ne connaissez pas le Javascript, le HTMl, ou le CSS ?
-<a href="https://developer.mozilla.org/en-US/docs/Learn">En savoir plus sur eux sur le MDN</a>.</p>
+<p>Pour illustrer ceci, voici une fonction factorielle au format <code>wat</code> :</p>
+<pre><code>(module
+  (func $fac (param f64) (result f64)
+    get_local 0
+    f64.const 1
+    f64.lt
+    if (result f64)
+      f64.const 1
+    else
+      get_local 0
+      get_local 0
+      f64.const 1
+      f64.sub
+      call $fac
+      f64.mul
+    end)
+  (export &quot;fac&quot; (func $fac)))
+</code></pre>
 <!--
-## How to read this book
+If you're curious about what a `wasm` file looks like you can use the [wat2wasm
+demo] with the above code.
 -->
-<h2><a class="header" href="#comment-lire-ce-livre" id="comment-lire-ce-livre">Comment lire ce livre</a></h2>
+<p>Si vous vous demandez à quoi ressemble un fichier <code>wasm</code>, vous pouvez utiliser
+la <a href="https://webassembly.github.io/wabt/demo/wat2wasm/">démonstation wat2wasm</a> avec le code ci-dessus.</p>
 <!--
-You should read [the motivation for using Rust and WebAssembly
-together][why-rust-wasm], as well as familiarize yourself with the [background
-and concepts][background] first.
+## Linear Memory
 -->
-<p>Vous devriez commencer par lire <a href="./why-rust-and-webassembly.html">les raisons d'utiliser Rust et WebAssembly
-ensemble</a>, et vous familliariser avec le <a href="./background-and-concepts.html">contexte et les
-concepts</a>.</p>
+<h2><a class="header" href="#la-mémoire-linéaire" id="la-mémoire-linéaire">La mémoire linéaire</a></h2>
 <!--
-The [tutorial][] is written to be read from start to finish. You should follow
-along: writing, compiling, and running the tutorial's code yourself. If you
-haven't used Rust and WebAssembly together before, do the tutorial!
+WebAssembly has a very simple [memory model]. A wasm module has access to a
+single "linear memory", which is essentially a flat array of bytes. This
+[memory can be grown] by a multiple of the page size (64K). It cannot be shrunk.
 -->
-<p>Le tutoriel est écrit pour être lu du début à la fin. Vous devez donc suivre sa
-progression : écrire, compiler et exécuter le code du tutorial vous aussi. Si
-vous n'avez jamais utilisé Rust et WebAssembly ensemble, suivez ce tutoriel !</p>
+<p>WebAssembly suit un <a href="https://webassembly.github.io/spec/core/syntax/modules.html#syntax-mem">modèle de mémoire</a> très simple. Un module
+wasm n'a accès qu'à une seule &quot;mémoire linéaire&quot;, qui est principalement un
+tableau uniforme d'octets. Cette <a href="https://webassembly.github.io/spec/core/syntax/instructions.html#syntax-instr-memory">mémoire peut être
+agrandie</a> d'une taille correspondant à un multiple d'une
+taille de page (64K). Elle ne peut pas être réduite.</p>
 <!--
-The [reference sections][reference] may be perused in any order.
+## Is WebAssembly Just for the Web?
 -->
-<p>Les <a href="./reference/index.html">sections références</a> peuvent toutefois être consultées dans
-n'importe quel ordre.</p>
+<h2><a class="header" href="#est-ce-que-le-webassembly-est-conçu-uniquement-pour-le-web-" id="est-ce-que-le-webassembly-est-conçu-uniquement-pour-le-web-">Est-ce que le WebAssembly est conçu uniquement pour le web ?</a></h2>
 <!--
-> **💡 Tip:** You can search through this book by clicking on the 🔍 icon at the
-> top of the page, or by pressing the `s` key.
+Although it has currently gathered attention in the JavaScript and Web
+communities in general, wasm makes no assumptions about its host
+environment. Thus, it makes sense to speculate that wasm will become a "portable
+executable" format that is used in a variety of contexts in the future. As of
+*today*, however, wasm is mostly related to JavaScript (JS), which comes in many
+flavors (including both on the Web and [Node.js]).
 -->
-<blockquote>
-<p><strong>💡 Astuce :</strong> Vous pouvez rechercher dans ce livre en cliquant sur
-l'icône 🔍 en haut de la page, ou en appuyant sur la touche <code>s</code> à tout moment.</p>
-</blockquote>
-<!--
-## Contributing to this book
--->
-<h2><a class="header" href="#contribution-à-ce-livre" id="contribution-à-ce-livre">Contribution à ce livre</a></h2>
-<!--
-This book is open source! Find a typo? Did we overlook something? [**Send us a
-pull request!**][repo]
--->
-<p>Ce livre est open source ! Si vous trouvez une faute, <a href="https://github.com/Jimskapt/rust-wasm-book-fr"><strong>vous pouvez nous
-envoyer une pull request</strong></a>. Si nous avons oublié quelque chose,
-<a href="https://github.com/rustwasm/book"><strong>envoyez une pull request sur la version Anglaise</strong></a> !</p>
-<!--
-[Rust]: https://www.rust-lang.org
-[WebAssembly]: https://webassembly.org/
-[trpl]: https://doc.rust-lang.org/book/
-[mdn]: https://developer.mozilla.org/en-US/docs/Learn
-[why-rust-wasm]: ./why-rust-and-webassembly.html
-[background]: ./background-and-concepts.html
-[tutorial]: ./game-of-life/introduction.html
-[reference]: ./reference/index.html
-[repo]: https://github.com/rustwasm/book
--->
+<p>Bien qu'il ait actuellement attiré l'attention des communautés JavaScript et du
+web en général, wasm ne sait rien sur son environnement d'accueil. Ainsi, il est
+raisonnable de penser que wasm puisse devenir un format &quot;d'exécutable portable&quot;
+qui puisse être utilisé à l'avenir dans des contextes variés. Cependant,
+<em>à l'heure de l'écriture de ces lignes</em>, wasm est majoritairement associé au
+JavaScript (JS), qui se décline sous plusieurs formats (y compris ceux sur le
+Web et dans <a href="https://nodejs.org">Node.js</a>).</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="background-and-concepts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="translation-terms.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="game-of-life/introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -263,9 +278,13 @@ envoyer une pull request</strong></a>. Si nous avons oublié quelque chose,
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a href="background-and-concepts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a href="translation-terms.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="game-of-life/introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
