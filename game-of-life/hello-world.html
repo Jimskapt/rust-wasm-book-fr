@@ -3,9 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Rust et WebAssembly</title>
-        
-        <meta name="robots" content="noindex" />
+        <title>🚧 Hello, World ! - Rust et WebAssembly</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -13,21 +11,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -37,7 +35,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
         </script>
 
@@ -83,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="why-rust-and-webassembly.html"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li><li class="expanded "><a href="background-and-concepts.html"><strong aria-hidden="true">3.</strong> 🚧 Le contexte et les concepts</a></li><li><ol class="section"><li class="expanded "><a href="what-is-webassembly.html"><strong aria-hidden="true">3.1.</strong> 🚧 Qu'est-ce que le WebAssembly ?</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="game-of-life/introduction.html"><strong aria-hidden="true">4.</strong> 🚧 Tutoriel</a></li><li><ol class="section"><li class="expanded "><a href="game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> 🚧 Réglages</a></li><li class="expanded "><a href="game-of-life/hello-world.html"><strong aria-hidden="true">4.2.</strong> 🚧 Hello, World !</a></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="../translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="../why-rust-and-webassembly.html"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li><li class="expanded "><a href="../background-and-concepts.html"><strong aria-hidden="true">3.</strong> 🚧 Le contexte et les concepts</a></li><li><ol class="section"><li class="expanded "><a href="../what-is-webassembly.html"><strong aria-hidden="true">3.1.</strong> 🚧 Qu'est-ce que le WebAssembly ?</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="../game-of-life/introduction.html"><strong aria-hidden="true">4.</strong> 🚧 Tutoriel</a></li><li><ol class="section"><li class="expanded "><a href="../game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> 🚧 Réglages</a></li><li class="expanded "><a href="../game-of-life/hello-world.html" class="active"><strong aria-hidden="true">4.2.</strong> 🚧 Hello, World !</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -118,7 +116,7 @@
                         <h1 class="menu-title">Rust et WebAssembly</h1>
 
                         <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
                             
@@ -157,513 +155,6 @@ vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
 erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
 </blockquote>
 <!--
-# Rust 🦀 and WebAssembly 🕸
--->
-<h1><a class="header" href="#rust--et-webassembly-" id="rust--et-webassembly-">Rust 🦀 et WebAssembly 🕸</a></h1>
-<!--
-This small book describes how to use [Rust][] and [WebAssembly][] together.
--->
-<p>Ce petit livre décrit comment utiliser ensemble <a href="https://www.rust-lang.org">Rust</a> et <a href="https://webassembly.org/">WebAssembly</a>.</p>
-<p>Vous êtes actuellement sur la version du livre traduite en Français de
-<a href="https://rustwasm.github.io/docs/book/">la version en Anglais</a>.</p>
-<!--
-## Who is this book for?
--->
-<h2><a class="header" href="#a-qui-est-destiné-ce-livre-" id="a-qui-est-destiné-ce-livre-">A qui est destiné ce livre ?</a></h2>
-<!--
-This book is for anyone interested in compiling Rust to WebAssembly for fast,
-reliable code on the Web. You should know some Rust, and be familiar with
-JavaScript, HTML, and CSS. You don't need to be an expert in any of them.
--->
-<p>Ce livre est écrit pour celles et ceux qui s'intéressent à compiler du code en
-Rust pour WebAssembly afin d'utiliser du code rapide et fiable sur le Web. Vous
-devez déjà connaître le de Rust, et être famillier·e avec le Javascript, HTML
-et CSS. Mais vous n'avez pas non plus besoin d'être un·e expert·e avec chacun.</p>
-<!--
-Don't know Rust yet? [Start with *The Rust Programming Language* first.][trpl]
--->
-<p>Vous ne connaissez pas encore le Rust ? <a href="https://jimskapt.github.io/rust-book-fr/">Commencez d'abord par parcourir le
-livre <em>Le langage de programmation Rust</em></a> ou alors <a href="https://doc.rust-lang.org/book/">sa version
-Anglaise</a>.</p>
-<!--
-Don't know JavaScript, HTML, or CSS? [Learn about them on MDN.][mdn]
--->
-<p>Vous ne connaissez pas le Javascript, le HTMl, ou le CSS ?
-<a href="https://developer.mozilla.org/en-US/docs/Learn">En savoir plus sur eux sur le MDN</a>.</p>
-<!--
-## How to read this book
--->
-<h2><a class="header" href="#comment-lire-ce-livre" id="comment-lire-ce-livre">Comment lire ce livre</a></h2>
-<!--
-You should read [the motivation for using Rust and WebAssembly
-together][why-rust-wasm], as well as familiarize yourself with the [background
-and concepts][background] first.
--->
-<p>Vous devriez commencer par lire <a href="./why-rust-and-webassembly.html">les raisons d'utiliser Rust et WebAssembly
-ensemble</a>, et vous familliariser avec le <a href="./background-and-concepts.html">contexte et les
-concepts</a>.</p>
-<!--
-The [tutorial][] is written to be read from start to finish. You should follow
-along: writing, compiling, and running the tutorial's code yourself. If you
-haven't used Rust and WebAssembly together before, do the tutorial!
--->
-<p>Le tutoriel est écrit pour être lu du début à la fin. Vous devez donc suivre sa
-progression : écrire, compiler et exécuter le code du tutorial vous aussi. Si
-vous n'avez jamais utilisé Rust et WebAssembly ensemble, suivez ce tutoriel !</p>
-<!--
-The [reference sections][reference] may be perused in any order.
--->
-<p>Les <a href="./reference/index.html">sections références</a> peuvent toutefois être consultées dans
-n'importe quel ordre.</p>
-<!--
-> **💡 Tip:** You can search through this book by clicking on the 🔍 icon at the
-> top of the page, or by pressing the `s` key.
--->
-<blockquote>
-<p><strong>💡 Astuce :</strong> Vous pouvez rechercher dans ce livre en cliquant sur
-l'icône 🔍 en haut de la page, ou en appuyant sur la touche <code>s</code> à tout moment.</p>
-</blockquote>
-<!--
-## Contributing to this book
--->
-<h2><a class="header" href="#contribution-à-ce-livre" id="contribution-à-ce-livre">Contribution à ce livre</a></h2>
-<!--
-This book is open source! Find a typo? Did we overlook something? [**Send us a
-pull request!**][repo]
--->
-<p>Ce livre est open source ! Si vous trouvez une faute, <a href="https://github.com/Jimskapt/rust-wasm-book-fr"><strong>vous pouvez nous
-envoyer une pull request</strong></a>. Si nous avons oublié quelque chose,
-<a href="https://github.com/rustwasm/book"><strong>envoyez une pull request sur la version Anglaise</strong></a> !</p>
-<!--
-[Rust]: https://www.rust-lang.org
-[WebAssembly]: https://webassembly.org/
-[trpl]: https://doc.rust-lang.org/book/
-[mdn]: https://developer.mozilla.org/en-US/docs/Learn
-[why-rust-wasm]: ./why-rust-and-webassembly.html
-[background]: ./background-and-concepts.html
-[tutorial]: ./game-of-life/introduction.html
-[reference]: ./reference/index.html
-[repo]: https://github.com/rustwasm/book
--->
-<h1><a class="header" href="#traduction-des-termes" id="traduction-des-termes">Traduction des termes</a></h1>
-<p>Voici les principaux termes techniques qui ont été traduits de l'anglais vers le
-français.</p>
-<table><thead><tr><th>Anglais</th><th>Français</th><th>Remarques</th></tr></thead><tbody>
-<tr><td>indirection</td><td>indirection</td><td>-</td></tr>
-<tr><td>garbage collector</td><td>ramasse-miettes</td><td>-</td></tr>
-<tr><td>monomorphization</td><td>monomorphisation</td><td>-</td></tr>
-</tbody></table>
-<blockquote>
-<h1><a class="header" href="#-attention-peinture-fraîche--1" id="-attention-peinture-fraîche--1">🚧 Attention, peinture fraîche !</a></h1>
-<p>Cette page a été traduite par une seule personne et n'a pas été relue et
-vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
-erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
-</blockquote>
-<!--
-# Why Rust and WebAssembly?
--->
-<h1><a class="header" href="#pourquoi-rust-et-le-webassembly-" id="pourquoi-rust-et-le-webassembly-">Pourquoi Rust et le WebAssembly ?</a></h1>
-<!--
-## Low-Level Control with High-Level Ergonomics
--->
-<h2><a class="header" href="#ils-offrent-un-contrôle-de-bas-niveau-mais-avec-une-ergonomie-de-haut-niveau" id="ils-offrent-un-contrôle-de-bas-niveau-mais-avec-une-ergonomie-de-haut-niveau">Ils offrent un contrôle de bas-niveau, mais avec une ergonomie de haut-niveau</a></h2>
-<!--
-JavaScript Web applications struggle to attain and retain reliable performance.
-JavaScript's dynamic type system and garbage collection pauses don't help.
-Seemingly small code changes can result in drastic performance regressions if
-you accidentally wander off the JIT's happy path.
--->
-<p>Les applications web en Javascript ont du mal à atteindre et conserver des
-performances satisfaisantes. Le système de type dynamique du Javascript et les
-interruptions pour le ramasse-miette n'aident pas non plus. Des petits
-changements en apparance mineurs peuvent impliquer de grosses régressions de
-performances si vous écartez de la trajectoire prédit par le système
-Just-In-Time.</p>
-<!--
-Rust gives programmers low-level control and reliable performance. It is free
-from the non-deterministic garbage collection pauses that plague JavaScript.
-Programmers have control over indirection, monomorphization, and memory layout.
--->
-<p>Rust offre aux développeurs un contrôle du bas-niveau et des performances
-efficaces. Il n'est pas soumis aux interruptions du ramasse-miettes qui accable
-le Javascript. Les développeurs ont le contrôle sur l'indirection, la
-monomorphisation, et l'utilisation de la mémoire.</p>
-<!--
-## Small `.wasm` Sizes
--->
-<h2><a class="header" href="#ils-produisent-des-wasm-légers" id="ils-produisent-des-wasm-légers">Ils produisent des <code>.wasm</code> légers</a></h2>
-<!--
-Code size is incredibly important since the `.wasm` must be downloaded over the
-network. Rust lacks a runtime, enabling small `.wasm` sizes because there is no
-extra bloat included like a garbage collector. You only pay (in code size) for
-the functions you actually use.
--->
-<p>La taille du code est très importante car le <code>.wasm</code> doit être téléchargé à
-partir du réseau. Rust n'a pas d'environnement d'exécution, ce qui permet
-d'obtenir des <code>.wasm</code> légers car il n'a pas de charge supplémentaire comme par
-exemple un ramasse-miettes. Vous ne payez (en terme de taille de code) que pour
-les fonctions que vous utilisez vraiment.</p>
-<!--
-## Do *Not* Rewrite Everything
--->
-<h2><a class="header" href="#il-nest-pas-nécessaire-de-tout-ré-écrire" id="il-nest-pas-nécessaire-de-tout-ré-écrire">Il n'est <em>pas</em> nécessaire de tout ré-écrire</a></h2>
-<!--
-Existing code bases don't need to be thrown away. You can start by porting your
-most performance-sensitive JavaScript functions to Rust to gain immediate
-benefits. And you can even stop there if you want to.
--->
-<p>La base de code existante n'a pas besoin d'être jetée. Vous pouvez commencer par
-porter en Rust vos fonctions Javascript les plus critiques pour les performances
-pour obtenir immédiatement des gains de performances. Et vous pouvez vous y
-arrêter là si vous le souhaitez.</p>
-<!--
-## Plays Well With Others
--->
-<h2><a class="header" href="#ils-saccommodent-bien-avec-les-autres" id="ils-saccommodent-bien-avec-les-autres">Ils s'accommodent bien avec les autres</a></h2>
-<!--
-Rust and WebAssembly integrates with existing JavaScript tooling. It supports
-ECMAScript modules and you can continue using the tooling you already love, like
-npm, Webpack, and Greenkeeper.
--->
-<p>Rust et WebAssembly s'intègrent dans les outils existants en Javascript. Ils
-supportent les modules ECMAScript et vous pouvez continuer à utiliser vos outils
-préférés, comme par exemple npm ou Webpack.</p>
-<!--
-## The Amenities You Expect
--->
-<h2><a class="header" href="#ils-offrent-des-commodités-dont-vous-avez-besoin" id="ils-offrent-des-commodités-dont-vous-avez-besoin">Ils offrent des commodités dont vous avez besoin</a></h2>
-<!--
-Rust has the modern amenities that developers have come to expect, such as:
--->
-<p>Rust offre des services que les développeurs attendent implicitement, comme :</p>
-<!--
-* strong package management with `cargo`,
--->
-<ul>
-<li>une gestion de packets efficiente avec <code>cargo</code>,</li>
-</ul>
-<!--
-* expressive (and zero-cost) abstractions,
--->
-<ul>
-<li>des abstractions explicites (et sans coût),</li>
-</ul>
-<!--
-* and a welcoming community! 😊
--->
-<ul>
-<li>et une communauté chaleureuse ! 😊</li>
-</ul>
-<blockquote>
-<h1><a class="header" href="#-attention-peinture-fraîche--2" id="-attention-peinture-fraîche--2">🚧 Attention, peinture fraîche !</a></h1>
-<p>Cette page a été traduite par une seule personne et n'a pas été relue et
-vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
-erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
-</blockquote>
-<!--
-# Background and Concepts
--->
-<h1><a class="header" href="#le-contexte-et-les-concepts" id="le-contexte-et-les-concepts">Le contexte et les concepts</a></h1>
-<!--
-This section provides the context necessary for diving into Rust and WebAssembly
-development.
--->
-<p>Cette section explique le contexte nécessaire pour comprendre le développement
-en Rust et WebAssembly.</p>
-<blockquote>
-<h1><a class="header" href="#-attention-peinture-fraîche--3" id="-attention-peinture-fraîche--3">🚧 Attention, peinture fraîche !</a></h1>
-<p>Cette page a été traduite par une seule personne et n'a pas été relue et
-vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
-erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
-</blockquote>
-<!--
-# What is WebAssembly?
--->
-<h1><a class="header" href="#quest-ce-que-le-webassembly-" id="quest-ce-que-le-webassembly-">Qu'est-ce que le WebAssembly ?</a></h1>
-<!--
-WebAssembly (wasm) is a simple machine model and executable format with an
-[extensive specification]. It is designed to be portable, compact, and execute
-at or near native speeds.
--->
-<p>Le WebAssembly (wasm) est un modèle de système simple et un format d'exécutable
-qui est décrit par des <a href="https://webassembly.github.io/spec/">spécifications détaillées</a>. Il
-est conçu pour être portable, compacte, et s'exécuter presque aussi vite que si
-c'était un programme natif.</p>
-<!--
-As a programming language, WebAssembly is comprised of two formats that
-represent the same structures, albeit in different ways:
--->
-<p>En tant que langage de programmation, WebAssembly est constitué de deux formats
-qui représentent les mêmes structures, bien qu'étant dans des formats
-différents :</p>
-<!--
-1. The `.wat` text format (called `wat` for "**W**eb**A**ssembly **T**ext") uses
-   [S-expressions], and bears some resemblance to the Lisp family of languages
-   like Scheme and Clojure.
--->
-<ol>
-<li>Le format textuel <code>.wat</code> (qui sont les initiales de &quot;<strong>W</strong>eb<strong>A</strong>ssembly
-<strong>T</strong>ext&quot;) qui utilise les <a href="https://en.wikipedia.org/wiki/S-expression">expressions symboliques</a>, et
-ressemble aux langages de la famille Lisp comme Scheme et Clojure.</li>
-</ol>
-<!--
-2. The `.wasm` binary format is lower-level and intended for consumption
-   directly by wasm virtual machines. It is conceptually similar to ELF and
-   Mach-O.
--->
-<ol start="2">
-<li>Le format binaire <code>.wasm</code> qui est plus bas-niveau et est destiné à être
-utilisé par des machines virtuelles pour le wasm. Il est techniquement
-similaire à l'ELF et au Mach-O.</li>
-</ol>
-<!--
-For reference, here is a factorial function in `wat`:
--->
-<p>Pour illustrer ceci, voici une fonction factorielle au format <code>wat</code> :</p>
-<pre><code>(module
-  (func $fac (param f64) (result f64)
-    get_local 0
-    f64.const 1
-    f64.lt
-    if (result f64)
-      f64.const 1
-    else
-      get_local 0
-      get_local 0
-      f64.const 1
-      f64.sub
-      call $fac
-      f64.mul
-    end)
-  (export &quot;fac&quot; (func $fac)))
-</code></pre>
-<!--
-If you're curious about what a `wasm` file looks like you can use the [wat2wasm
-demo] with the above code.
--->
-<p>Si vous vous demandez à quoi ressemble un fichier <code>wasm</code>, vous pouvez utiliser
-la <a href="https://webassembly.github.io/wabt/demo/wat2wasm/">démonstation wat2wasm</a> avec le code ci-dessus.</p>
-<!--
-## Linear Memory
--->
-<h2><a class="header" href="#la-mémoire-linéaire" id="la-mémoire-linéaire">La mémoire linéaire</a></h2>
-<!--
-WebAssembly has a very simple [memory model]. A wasm module has access to a
-single "linear memory", which is essentially a flat array of bytes. This
-[memory can be grown] by a multiple of the page size (64K). It cannot be shrunk.
--->
-<p>WebAssembly suit un <a href="https://webassembly.github.io/spec/core/syntax/modules.html#syntax-mem">modèle de mémoire</a> très simple. Un module
-wasm n'a accès qu'à une seule &quot;mémoire linéaire&quot;, qui est principalement un
-tableau uniforme d'octets. Cette <a href="https://webassembly.github.io/spec/core/syntax/instructions.html#syntax-instr-memory">mémoire peut être
-agrandie</a> d'une taille correspondant à un multiple d'une
-taille de page (64K). Elle ne peut pas être réduite.</p>
-<!--
-## Is WebAssembly Just for the Web?
--->
-<h2><a class="header" href="#est-ce-que-le-webassembly-est-conçu-uniquement-pour-le-web-" id="est-ce-que-le-webassembly-est-conçu-uniquement-pour-le-web-">Est-ce que le WebAssembly est conçu uniquement pour le web ?</a></h2>
-<!--
-Although it has currently gathered attention in the JavaScript and Web
-communities in general, wasm makes no assumptions about its host
-environment. Thus, it makes sense to speculate that wasm will become a "portable
-executable" format that is used in a variety of contexts in the future. As of
-*today*, however, wasm is mostly related to JavaScript (JS), which comes in many
-flavors (including both on the Web and [Node.js]).
--->
-<p>Bien qu'il ait actuellement attiré l'attention des communautés JavaScript et du
-web en général, wasm ne sait rien sur son environnement d'accueil. Ainsi, il est
-raisonnable de penser que wasm puisse devenir un format &quot;d'exécutable portable&quot;
-qui puisse être utilisé à l'avenir dans des contextes variés. Cependant,
-<em>à l'heure de l'écriture de ces lignes</em>, wasm est majoritairement associé au
-JavaScript (JS), qui se décline sous plusieurs formats (y compris ceux sur le
-Web et dans <a href="https://nodejs.org">Node.js</a>).</p>
-<blockquote>
-<h1><a class="header" href="#-attention-peinture-fraîche--4" id="-attention-peinture-fraîche--4">🚧 Attention, peinture fraîche !</a></h1>
-<p>Cette page a été traduite par une seule personne et n'a pas été relue et
-vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
-erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
-</blockquote>
-<!--
-# Tutorial: Conway's Game of Life
--->
-<h1><a class="header" href="#tutoriel--le-jeu-de-la-vie" id="tutoriel--le-jeu-de-la-vie">Tutoriel : le jeu de la vie</a></h1>
-<!--
-This is a tutorial that implements [Conway's Game of Life][gol] in Rust and
-WebAssembly.
--->
-<p>Ceci est un tutoriel qui va implémenter <a href="https://fr.wikipedia.org/wiki/Jeu_de_la_vie">le Jeu de la vie, de Conway</a> en
-Rust et WebAssembly.</p>
-<!--
-[gol]: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
--->
-<!--
-## Who is this tutorial for?
--->
-<h2><a class="header" href="#a-qui-sadresse-ce-tutoriel-" id="a-qui-sadresse-ce-tutoriel-">A qui s'adresse ce tutoriel ?</a></h2>
-<!--
-This tutorial is for anyone who already has basic Rust and JavaScript
-experience, and wants to learn how to use Rust, WebAssembly, and JavaScript
-together.
--->
-<p>Ce tutoriel a été créé pour ceux qui ont déjà une expérience de base avec Rust
-et le JavaScript, et qui souhaitent en savoir plus sur l'utilisation conjointe
-de Rust, WebAssembly, et JavaScript.</p>
-<!--
-You should be comfortable reading and writing basic Rust, JavaScript, and
-HTML. You definitely do not need to be an expert.
--->
-<p>Vous devez donc être à l'aise pour lire et écrire du code Rust, JavaScript, et
-HTML. Toutefois, vous n'avez vraiment pas besoin d'en être un expert.</p>
-<!--
-## What will I learn?
--->
-<h2><a class="header" href="#quallons-nous-apprendre-" id="quallons-nous-apprendre-">Qu'allons-nous apprendre ?</a></h2>
-<!--
-* How to set up a Rust toolchain for compiling to WebAssembly.
--->
-<ul>
-<li>Comment régler une toolchain de Rust pour compiler en WebAssembly.</li>
-</ul>
-<!--
-* A workflow for developing polyglot programs made from Rust, WebAssembly,
-  JavaScript, HTML, and CSS.
--->
-<ul>
-<li>Suivre une procédure pour développer des programmes polyglottes constitués de
-Rust, WebAssembly, HTML et CSS.</li>
-</ul>
-<!--
-* How to design APIs to take maximum advantage of both Rust and WebAssembly's
-  strengths and also JavaScript's strengths.
--->
-<ul>
-<li>Comment concevoir des API pour profiter des avantages à la fois de Rust et de
-de WebAssembly et aussi des avantages de JavaScript.</li>
-</ul>
-<!--
-* How to debug WebAssembly modules compiled from Rust.
--->
-<ul>
-<li>Comment déboguer les modules en WebAssembly, compilés avec Rust.</li>
-</ul>
-<!--
-* How to time profile Rust and WebAssembly programs to make them faster.
--->
-<ul>
-<li>Comment créer un profil chronologique de programmes en Rust et WebAssembly
-pour améliorer leurs performances.</li>
-</ul>
-<!--
-* How to size profile Rust and WebAssembly programs to make `.wasm` binaries
-  smaller and faster to download over the network.
--->
-<ul>
-<li>Comment établir un profil de poids des programmes en Rust et WebAssembly pour
-réduire la taille des binaires <code>.wasm</code> et ainsi accélérer leur téléchargement
-via le réseau.</li>
-</ul>
-<blockquote>
-<h1><a class="header" href="#-attention-peinture-fraîche--5" id="-attention-peinture-fraîche--5">🚧 Attention, peinture fraîche !</a></h1>
-<p>Cette page a été traduite par une seule personne et n'a pas été relue et
-vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
-erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
-</blockquote>
-<!--
-# Setup
--->
-<h1><a class="header" href="#réglages" id="réglages">Réglages</a></h1>
-<!--
-This section describes how to set up the toolchain for compiling Rust programs
-to WebAssembly and integrate them into JavaScript.
--->
-<p>Cette section décrit comment régler la toolchain pour compiler les programmes
-Rust en WebAssembly et les intégrer dans JavaScript.</p>
-<!--
-## The Rust Toolchain
--->
-<h2><a class="header" href="#la-toolchain-rust" id="la-toolchain-rust">La toolchain Rust</a></h2>
-<!--
-You will need the standard Rust toolchain, including `rustup`, `rustc`, and
-`cargo`.
--->
-<p>Vous allez avoir besoin de la toolchain Rust standard, y compris <code>rustup</code>,
-<code>rustc</code>, et <code>cargo</code>.</p>
-<!--
-[Follow these instructions to install the Rust toolchain.][rust-install]
--->
-<p><a href="https://www.rust-lang.org/tools/install">Cliquez ici pour suivre les instructions pour installer la toolchain
-Rust.</a></p>
-<!--
-The Rust and WebAssembly experience is riding the Rust release trains to stable!
-That means we don't require any experimental feature flags. However, we do
-require Rust 1.30 or newer.
--->
-<p>L'expérience entre Rust et WebAssembly suit les trains de publications de Rust
-stable ! Cela signifie que nous n'avons pas besoin de drapeaux de
-fonctionnalitées expérimentales. Cependant, nous avons besoin de Rust 1.30 ou
-plus récent.</p>
-<!--
-## `wasm-pack`
--->
-<h2><a class="header" href="#wasm-pack" id="wasm-pack"><code>wasm-pack</code></a></h2>
-<!--
-`wasm-pack` is your one-stop shop for building, testing, and publishing
-Rust-generated WebAssembly.
--->
-<p><code>wasm-pack</code> sera votre interlocuteur unique pour compiler, tester, et publier du
-WebAssembly généré par Rust.</p>
-<!--
-[Get `wasm-pack` here!][wasm-pack-install]
--->
-<p><a href="https://rustwasm.github.io/wasm-pack/installer/">Obtenez <code>wasm-pack</code> ici !</a></p>
-<!--
-## `cargo-generate`
--->
-<h2><a class="header" href="#cargo-generate" id="cargo-generate"><code>cargo-generate</code></a></h2>
-<!--
-[`cargo-generate` helps you get up and running quickly with a new Rust project
-by leveraging a pre-existing git repository as a template.][cargo-generate]
--->
-<p><a href="https://github.com/ashleygwilliams/cargo-generate"><code>cargo-generate</code> va vous aider à vous mettre sur pied rapidement avec un
-nouveau projet Rust en utilisant comme modèle un dépôt git déjà
-existant.</a></p>
-<!--
-Install `cargo-generate` with this command:
--->
-<p>Vous pouvez installer <code>cargo-generate</code> avec cette commande :</p>
-<pre><code>cargo install cargo-generate
-</code></pre>
-<!--
-## `npm`
--->
-<h2><a class="header" href="#npm" id="npm"><code>npm</code></a></h2>
-<!--
-`npm` is a package manager for JavaScript. We will use it to install and run a
-JavaScript bundler and development server. At the end of the tutorial, we will
-publish our compiled `.wasm` to the `npm` registry.
--->
-<p><code>npm</code> est un gestionnaire de paquets pour JavaScript. Nous allons l'utiliser
-pour installer et exécuter un bundler JavaScript et un serveur de développement.
-A la fin de ce tutoriel, nous allons publier notre <code>.wasm</code> dans le registre
-<code>npm</code>.</p>
-<!--
-[Follow these instructions to install `npm`.][npm-install]
--->
-<p><a href="https://www.npmjs.com/get-npm">Cliquez ici pour suivre les instructions pour installer <code>npm</code>.</a></p>
-<!--
-If you already have `npm` installed, make sure it is up to date with this
-command:
--->
-<p>Si vous avez déjà <code>npm</code> d'installé, assurez-vous qu'il est à jour avec cette
-commande :</p>
-<pre><code>npm install npm@latest -g
-</code></pre>
-<blockquote>
-<h1><a class="header" href="#-attention-peinture-fraîche--6" id="-attention-peinture-fraîche--6">🚧 Attention, peinture fraîche !</a></h1>
-<p>Cette page a été traduite par une seule personne et n'a pas été relue et
-vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
-erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
-</blockquote>
-<!--
 # Hello, World!
 -->
 <h1><a class="header" href="#hello-world-" id="hello-world-">Hello, World !</a></h1>
@@ -677,7 +168,7 @@ dialogue &quot;Hello, World !&quot;.</p>
 <!--
 Make sure you have followed the [setup instructions](setup.html) before beginning.
 -->
-<p>Assurez-vous que vous avez suivi les <a href="game-of-life/setup.html">réglages</a> avant de commencer.</p>
+<p>Assurez-vous que vous avez suivi les <a href="setup.html">réglages</a> avant de commencer.</p>
 <!--
 ## Clone the Project Template
 -->
@@ -848,7 +339,7 @@ code](debugging.html), but we can ignore this file for now.
 <p>Le module <code>src/utils.rs</code> fournit quelques outils communs pour faciliter la
 compilation de Rust en WebAssembly. Nous nous discuterons en détails de ces
 outils plus tard dans le tutoriel, en particulier lorsque nous demanderons
-comment <a href="game-of-life/debugging.html">déboguer notre code wasm</a>, mais pour l'instant nous
+comment <a href="debugging.html">déboguer notre code wasm</a>, mais pour l'instant nous
 pouvons nous contenter d'ignorer ce fichier.</p>
 <!--
 ## Build the Project
@@ -1316,7 +807,7 @@ d'avertissement :</p>
 <!--
 [![Screenshot of the "Hello, wasm-game-of-life!" Web page alert](../images/game-of-life/hello-world.png)](../images/game-of-life/hello-world.png)
 -->
-<p><a href="game-of-life/images/game-of-life/hello-world.png"><img src="game-of-life/images/game-of-life/hello-world.png" alt="Capture d'écran de l'alerte &quot;Salut, wasm-jeu-de-la-vie !&quot; sur la page web" /></a></p>
+<p><a href="images/game-of-life/hello-world.png"><img src="images/game-of-life/hello-world.png" alt="Capture d'écran de l'alerte &quot;Salut, wasm-jeu-de-la-vie !&quot; sur la page web" /></a></p>
 <!--
 Anytime you make changes and want them reflected on
 [http://localhost:8080/](http://localhost:8080/), just re-run the `wasm-pack
@@ -1390,6 +881,10 @@ pub fn saluer(nom: &amp;str) {
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="../game-of-life/setup.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
 
@@ -1399,6 +894,10 @@ pub fn saluer(nom: &amp;str) {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../game-of-life/setup.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
                 
 
                 
@@ -1421,28 +920,20 @@ pub fn saluer(nom: &amp;str) {
         
 
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         
-        <script type="text/javascript" src="github-button.js"></script>
+        <script type="text/javascript" src="../github-button.js"></script>
         
 
-        
-        
-        <script type="text/javascript">
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
-        
         
 
     </body>
