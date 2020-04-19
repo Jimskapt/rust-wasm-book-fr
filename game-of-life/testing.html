@@ -1,0 +1,524 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>🚧 Tester la vie - Rust et WebAssembly</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="../translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="../why-rust-and-webassembly.html"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li><li class="expanded "><a href="../background-and-concepts.html"><strong aria-hidden="true">3.</strong> 🚧 Le contexte et les concepts</a></li><li><ol class="section"><li class="expanded "><a href="../what-is-webassembly.html"><strong aria-hidden="true">3.1.</strong> 🚧 Qu'est-ce que le WebAssembly ?</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="../game-of-life/introduction.html"><strong aria-hidden="true">4.</strong> 🚧 Tutoriel</a></li><li><ol class="section"><li class="expanded "><a href="../game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> 🚧 Réglages</a></li><li class="expanded "><a href="../game-of-life/hello-world.html"><strong aria-hidden="true">4.2.</strong> 🚧 Hello, World !</a></li><li class="expanded "><a href="../game-of-life/rules.html"><strong aria-hidden="true">4.3.</strong> 🚧 Les règles</a></li><li class="expanded "><a href="../game-of-life/implementing.html"><strong aria-hidden="true">4.4.</strong> 🚧 Implémenter la vie</a></li><li class="expanded "><a href="../game-of-life/testing.html" class="active"><strong aria-hidden="true">4.5.</strong> 🚧 Tester la vie</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Rust et WebAssembly</h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <blockquote>
+<h1><a class="header" href="#-attention-peinture-fraîche-" id="-attention-peinture-fraîche-">🚧 Attention, peinture fraîche !</a></h1>
+<p>Cette page a été traduite par une seule personne et n'a pas été relue et
+vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
+erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
+</blockquote>
+<!--
+# Testing Conway's Game of Life
+-->
+<h1><a class="header" href="#tester-le-jeu-de-la-vie-de-conway" id="tester-le-jeu-de-la-vie-de-conway">Tester le jeu de la vie de Conway</a></h1>
+<!--
+Now that we have our Rust implementation of the Game of Life rendering in the 
+browser with JavaScript, let's talk about testing our Rust-generated 
+WebAssembly functions.
+-->
+<p>Maintenant que nous avons notre implémentation en Rust du jeu de la vie qui
+s'exécute dans le navigateur web avec JavaScript, nous pouvons voir comment
+tester nos fonctions WebAssembly générées par Rust.</p>
+<!--
+We are going to test our `tick` function to make sure that it gives us the 
+output that we expect.
+-->
+<p>Nous allons tester notre fonction <code>tick</code> pour s'assurer qu'elle nous donne bien
+le résultat que nous souhaitons.</p>
+<!--
+Next, we'll want to create some setter and getter 
+functions inside our existing `impl Universe` block in the
+`wasm_game_of_life/src/lib.rs` file. We are going to create a `set_width`
+and a `set_height` function so we can create `Universe`s of different sizes.
+-->
+<p>Ensuite, nous allons créer des mutateurs et des accesseurs dans notre bloc
+<code>impl Univers</code> dans le ficher <code>wasm-jeu-de-la-vie/src/lib.rs</code>. Nous allons créer
+une fonction <code>set_largeur</code> et <code>set_hauteur</code> pour que nous puissions créer des
+<code>Univers</code> de différentes tailles.</p>
+<!--
+```rust
+#[wasm_bindgen]
+impl Universe { 
+    // ...
+
+    /// Set the width of the universe.
+    ///
+    /// Resets all cells to the dead state.
+    pub fn set_width(&mut self, width: u32) {
+        self.width = width;
+        self.cells = (0..width * self.height).map(|_i| Cell::Dead).collect();
+    }
+
+    /// Set the height of the universe.
+    ///
+    /// Resets all cells to the dead state.
+    pub fn set_height(&mut self, height: u32) {
+        self.height = height;
+        self.cells = (0..self.width * height).map(|_i| Cell::Dead).collect();
+    }
+
+}
+```
+-->
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>#[wasm_bindgen]
+impl Univers {
+    // ...
+
+    /// Définit la largeur de l'univers.
+    ///
+    /// Cela va tuer toutes les cellules.
+    pub fn set_largeur(&amp;mut self, largeur: u32) {
+        self.largeur = largeur;
+        self.cellules = (0..largeur * self.hauteur).map(|_i| Cellule::Morte).collect();
+    }
+
+    /// Définit la hauteur de l'univers.
+    ///
+    /// Cela va tuer toutes les cellules.
+    pub fn set_hauteur(&amp;mut self, hauteur: u32) {
+        self.hauteur = hauteur;
+        self.cellules = (0..self.largeur * hauteur).map(|_i| Cellule::Morte).collect();
+    }
+
+}
+<span class="boring">}
+</span></code></pre></pre>
+<!--
+We are going to create another `impl Universe` block inside our
+`wasm_game_of_life/src/lib.rs` file without the `#[wasm_bindgen]` attribute.
+There are a few functions we need for testing that we don't want to expose to
+our JavaScript. Rust-generated WebAssembly functions cannot return
+borrowed references. Try compiling the Rust-generated WebAssembly with the
+attribute and take a look at the errors you get.
+-->
+<p>Nous allons créer un autre bloc <code>impl Univers</code> dans notre fichier
+<code>wasm-jeu-de-la-vie</code> sans l'attribut <code>#[wasm_bindgen]</code>. Il y a quelques
+fonctions que nous avons besoin pour tester que nous ne souhaitons pas exposer
+au JavaScript. Les fonctions WebAssembly générées par Rust ne peut pas retourner
+des références empruntées. Essayez de compiler le WebAssembly généré par Rust
+avec l'attribut et constatez les erreurs que vous obtenez.</p>
+<!--
+We are going to write the implementation of `get_cells` to get the contents of
+the `cells` of a `Universe`. We'll also write a `set_cells` function so we can
+set `cells` in a specific row and column of a `Universe` to be `Alive.`
+-->
+<p>Nous allons écrire l'implémentation de <code>get_cellules</code> pour obtenir le contenu de
+<code>cellules</code> d'un <code>Univers</code>. Nous allons aussi écrire une fonction <code>set_cellules</code>
+pour que nous puissions donner vie à des <code>cellules</code> d'un <code>Univers</code>.</p>
+<!--
+```rust
+impl Universe {
+    /// Get the dead and alive values of the entire universe.
+    pub fn get_cells(&self) -> &[Cell] {
+        &self.cells
+    }
+
+    /// Set cells to be alive in a universe by passing the row and column
+    /// of each cell as an array.
+    pub fn set_cells(&mut self, cells: &[(u32, u32)]) {
+        for (row, col) in cells.iter().cloned() {
+            let idx = self.get_index(row, col);
+            self.cells[idx] = Cell::Alive;
+        }
+    }
+
+}
+```
+-->
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>impl Univers {
+    /// Donne toutes les cellules mortes et vivantes de l'univers.
+    pub fn get_cellules(&amp;self) -&gt; &amp;[Cellule] {
+        &amp;self.cellules
+    }
+
+    /// Définit les cellules vivantes de l'univers en lui fournissant la ligne
+    /// et la colonne de chacune des cellules dans un tableau.
+    pub fn set_cellules(&amp;mut self, cellules: &amp;[(u32, u32)]) {
+        for (ligne, colonne) in cellules.iter().cloned() {
+            let indice = self.get_index(ligne, colonne);
+            self.cellules[indice] = Cellule::Vivante;
+        }
+    }
+
+}
+<span class="boring">}
+</span></code></pre></pre>
+<!--
+Now we're going to create our test in the `wasm_game_of_life/tests/web.rs` file.
+-->
+<p>Maintenant nous pouvons créer notre test dans le fichier
+<code>wasm-jeu-de-la-vie/tests/web.rs</code>.</p>
+<!--
+Before we do that, there is already one working test in the file. You can
+confirm that the Rust-generated WebAssembly test is working by running
+`wasm-pack test --chrome --headless` in the `wasm-game-of-life` directory.
+You can also use the `--firefox`, `--safari`, and `--node` options to
+test your code in those browsers.
+-->
+<p>Avant de nous lancer, nous constatons qu'il existe déjà un test qui fonctionne
+dans ce fichier. Vous pouvez confirmer que le test du WebAssembly généré par
+Rust fonctionne en exécutant <code>wasm-pack test --chrome --headless</code> dans le
+dossier <code>wasm-jeu-de-la-vie</code>. Vous pouvez utiliser les options <code>--firefox</code>,
+<code>--safari</code>, et <code>--node</code> pour tester votre code dans ces navigateurs.</p>
+<!--
+In the `wasm_game_of_life/tests/web.rs` file, we need to export our
+`wasm_game_of_life` crate and the `Universe` type.
+-->
+<p>Dans le fichier <code>wasm-jeu-de-la-vie/tests/web.rs</code>, nous devons importer notre
+crate <code>wasm_jeu_de_la_vie</code> et le type <code>Univers</code>.</p>
+<!--
+```rust
+extern crate wasm_game_of_life;
+use wasm_game_of_life::Universe;
+```
+-->
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>extern crate wasm_jeu_de_la_vie; // (facultatif en Rust 2018)
+use wasm_jeu_de_la_vie::Univers;
+<span class="boring">}
+</span></code></pre></pre>
+<!--
+In the `wasm_game_of_life/tests/web.rs` file we'll want to create some
+spaceship builder functions.
+-->
+<p>Dans le fichier <code>wasm-jeu-de-la-vie/tests/web.rs</code>, nous allons ajouter quelques
+fonctions qui créent des créateurs de vaisseaux spatiaux.</p>
+<!--
+We'll want one for our input spaceship that we'll call the `tick` function on
+and we'll want the expected spaceship we will get after one tick. We picked the
+cells that we want to initialize as `Alive` to create our spaceship in the
+`input_spaceship` function. The position of the spaceship in the
+`expected_spaceship` function after the tick of the `input_spaceship` was
+calculated manually. You can confirm for yourself that the cells of the input
+spaceship after one tick is the same as the expected spaceship.
+-->
+<p>Nous allons en ajouter une pour créer notre vaisseau spatial initial lorsque
+nous appellerons la fonction <code>tick</code> et nous voulons qu'il soit toujours là après
+une <code>tick</code>. Nous avons choisi les cellules que nous voulons donner vie pour
+créer notre vaisseau spatial dans la fonction <code>vaisseau_spatial_initial</code>. La
+position du vaisseau spatial dans la fonction <code>vaisseau_spatial_attendu</code> dans
+la <code>tick</code> suivant <code>vaisseau_spatial_initial</code> a été calculée manuellement. Vous
+pouvez vérifier par vous-même que les cellules du vaisseau spatial initial sont
+les mêmes que celles attendues après une <code>tick</code>.</p>
+<!--
+```rust
+#[cfg(test)]
+pub fn input_spaceship() -> Universe {
+    let mut universe = Universe::new();
+    universe.set_width(6);
+    universe.set_height(6);
+    universe.set_cells(&[(1,2), (2,3), (3,1), (3,2), (3,3)]);
+    universe
+}
+
+#[cfg(test)]
+pub fn expected_spaceship() -> Universe {
+    let mut universe = Universe::new();
+    universe.set_width(6);
+    universe.set_height(6);
+    universe.set_cells(&[(2,1), (2,3), (3,2), (3,3), (4,2)]);
+    universe
+}
+```
+-->
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>#[cfg(test)]
+pub fn vaisseau_spatial_initial() -&gt; Univers {
+    let mut univers = Univers::new();
+    univers.set_largeur(6);
+    univers.set_hauteur(6);
+    univers.set_cellules(&amp;[(1,2), (2,3), (3,1), (3,2), (3,3)]);
+    univers
+}
+
+#[cfg(test)]
+pub fn vaisseau_spatial_attendu() -&gt; Univers {
+    let mut univers = Univers::new();
+    univers.set_largeur(6);
+    univers.set_hauteur(6);
+    univers.set_cellules(&amp;[(2,1), (2,3), (3,2), (3,3), (4,2)]);
+    univers
+}
+<span class="boring">}
+</span></code></pre></pre>
+<!--
+Now we will write the implementation for our `test_tick` function. First, we
+create an instance of our `input_spaceship()` and our `expected_spaceship()`.
+Then, we call `tick` on the `input_universe`. Finally, we use the `assert_eq!`
+macro to call `get_cells()` to ensure that `input_universe` and
+`expected_universe` have the same `Cell` array values. We add the
+`#[wasm_bindgen_test]` attribute to our code block so we can test our
+Rust-generated WebAssembly code and use `wasm-pack test` to test the
+WebAssembly code.
+-->
+<p>Maintenant nous allons écrire l'implémentation de notre fonction <code>test_tick</code>.
+Pour commencer, nous allons créer une instance de notre
+<code>vaisseau_spatial_initial()</code> et de notre <code>vaisseau_spatial_attendu()</code>. Ensuite,
+nous appellerons <code>tick</code> sur <code>univers_initial</code>. Enfin, nous utiliserons la macro
+<code>assert_eq!</code> pour faire appel à <code>get_cellules()</code> pour s'assurer que
+<code>univers_initial</code> et <code>univers_attendu</code> ont la même valeur pour leur tableau de
+<code>Cellules</code>. Nous avons ajouté l'attribut <code>#[wasm_bindgen_test]</code> à notre bloc de
+code pour que nous puissions tester notre code WebAssembly généré par Rust et
+utiliser <code>wasm-pack test</code> pour tester le code WebAssembly.</p>
+<!--
+```rust
+#[wasm_bindgen_test]
+pub fn test_tick() {
+    // Let's create a smaller Universe with a small spaceship to test!
+    let mut input_universe = input_spaceship();
+
+    // This is what our spaceship should look like
+    // after one tick in our universe.
+    let expected_universe = expected_spaceship();
+
+    // Call `tick` and then see if the cells in the `Universe`s are the same.
+    input_universe.tick();
+    assert_eq!(&input_universe.get_cells(), &expected_universe.get_cells());
+}
+```
+-->
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>#[wasm_bindgen_test]
+pub fn test_tick() {
+    // On crée un petit univers avec un petit vaisseau spatial, pour tester !
+    let mut univers_initial = vaisseau_spatial_initial();
+
+    // C'est ce à quoi doit ressembler notre vaisseau spatial après une tick
+    // dans notre univers.
+    let univers_attendu = vaisseau_spatial_attendu();
+
+    // Appelons `tick` et voyons ensuite si les cellules dans les `Univers` sont
+    // les mêmes.
+    univers_initial.tick();
+    assert_eq!(&amp;univers_initial.get_cells(), &amp;univers_attendu.get_cells());
+}
+<span class="boring">}
+</span></code></pre></pre>
+<!--
+Run the tests within the `wasm-game-of-life` directory by running
+`wasm-pack test --firefox --headless`.
+-->
+<p>Exécutez les tests dans le dossier <code>wasm-jeu-de-la-vie</code> en exécutant
+<code>wasm-pack test --firefox --headless</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../game-of-life/implementing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../game-of-life/implementing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="../github-button.js"></script>
+        
+
+        
+
+    </body>
+</html>
