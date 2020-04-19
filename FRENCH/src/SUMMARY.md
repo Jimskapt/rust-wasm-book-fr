@@ -12,3 +12,4 @@
     - [🚧 Réglages](./game-of-life/setup.md)
     - [🚧 Hello, World !](./game-of-life/hello-world.md)
     - [🚧 Les règles](./game-of-life/rules.md)
+    - [🚧 Implémenter la vie](./game-of-life/implementing.md)
