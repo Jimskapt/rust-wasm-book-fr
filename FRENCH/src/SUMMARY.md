@@ -15,3 +15,4 @@
     - [🚧 Implémenter la vie](./game-of-life/implementing.md)
     - [🚧 Tester la vie](./game-of-life/testing.md)
     - [🚧 Débogage](./game-of-life/debugging.md)
+    - [🚧 Ajouter de l'interactivité](./game-of-life/interactivity.md)
