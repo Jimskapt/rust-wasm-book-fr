@@ -1,0 +1,609 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>🚧 Ajouter de l'interactivité - Rust et WebAssembly</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="../translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="../why-rust-and-webassembly.html"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li><li class="expanded "><a href="../background-and-concepts.html"><strong aria-hidden="true">3.</strong> 🚧 Le contexte et les concepts</a></li><li><ol class="section"><li class="expanded "><a href="../what-is-webassembly.html"><strong aria-hidden="true">3.1.</strong> 🚧 Qu'est-ce que le WebAssembly ?</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="../game-of-life/introduction.html"><strong aria-hidden="true">4.</strong> 🚧 Tutoriel</a></li><li><ol class="section"><li class="expanded "><a href="../game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> 🚧 Réglages</a></li><li class="expanded "><a href="../game-of-life/hello-world.html"><strong aria-hidden="true">4.2.</strong> 🚧 Hello, World !</a></li><li class="expanded "><a href="../game-of-life/rules.html"><strong aria-hidden="true">4.3.</strong> 🚧 Les règles</a></li><li class="expanded "><a href="../game-of-life/implementing.html"><strong aria-hidden="true">4.4.</strong> 🚧 Implémenter la vie</a></li><li class="expanded "><a href="../game-of-life/testing.html"><strong aria-hidden="true">4.5.</strong> 🚧 Tester la vie</a></li><li class="expanded "><a href="../game-of-life/debugging.html"><strong aria-hidden="true">4.6.</strong> 🚧 Débogage</a></li><li class="expanded "><a href="../game-of-life/interactivity.html" class="active"><strong aria-hidden="true">4.7.</strong> 🚧 Ajouter de l'interactivité</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Rust et WebAssembly</h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <blockquote>
+<h1><a class="header" href="#-attention-peinture-fraîche-" id="-attention-peinture-fraîche-">🚧 Attention, peinture fraîche !</a></h1>
+<p>Cette page a été traduite par une seule personne et n'a pas été relue et
+vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
+erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
+</blockquote>
+<!--
+# Adding Interactivity
+-->
+<h1><a class="header" href="#ajouter-de-linteractivité" id="ajouter-de-linteractivité">Ajouter de l'interactivité</a></h1>
+<!--
+We will continue to explore the JavaScript and WebAssembly interface by adding
+some interactive features to our Game of Life implementation. We will enable
+users to toggle whether a cell is alive or dead by clicking on it, and
+allow pausing the game, which makes drawing cell patterns a lot easier.
+-->
+<p>Nous allons continuer à explorer l'interfaçage entre le JavaScript et le
+WebAssembly en ajouter des fonctionnalités d'interaction avec notre
+implémentation du jeu de la vie. Nous allons permettre aux utilisateurs de
+changer le statut vivant ou mort d'une cellule en cliquant dessus, et aussi leur
+permettre de mettre en pause le jeu, ce qui va faciliter le dessin de certains
+schémas.</p>
+<!--
+## Pausing and Resuming the Game
+-->
+<h2><a class="header" href="#mettre-en-pause-et-reprendre-le-jeu" id="mettre-en-pause-et-reprendre-le-jeu">Mettre en pause et reprendre le jeu</a></h2>
+<!--
+Let's add a button to toggle whether the game is playing or paused. To
+`wasm-game-of-life/www/index.html`, add the button right above the `<canvas>`:
+-->
+<p>Ajoutons un bouton pour changer si le jeu est en cours de lecture ou en pause.
+Dans <code>wasm-jeu-de-la-vie/www/index.html</code>, ajoutez le bouton juste au-dessus le
+<code>&lt;canvas&gt;</code> :</p>
+<!--
+```html
+<button id="play-pause"></button>
+```
+-->
+<pre><code class="language-html">&lt;button id=&quot;lecture-pause&quot;&gt;&lt;/button&gt;
+</code></pre>
+<!--
+In the `wasm-game-of-life/www/index.js` JavaScript, we will make the following
+changes:
+-->
+<p>Dans le JavaScript <code>wasm-game-of-life/www/index.js</code>, nous allons faire les
+changements suivants :</p>
+<!--
+* Keep track of the identifier returned by the latest call to
+  `requestAnimationFrame`, so that we can cancel the animation by calling
+  `cancelAnimationFrame` with that identifier.
+-->
+<ul>
+<li>Conserver l'identifiant retourné par le dernier appel à
+<code>requestAnimationFrame</code>, pour que nous puissions annuler l'animation en
+faisant appel à <code>cancelAnimationFrame</code> avec cet identifiant.</li>
+</ul>
+<!--
+* When the play/pause button is clicked, check for whether we have the
+  identifier for a queued animation frame. If we do, then the game is currently
+  playing, and we want to cancel the animation frame so that `renderLoop` isn't
+  called again, effectively pausing the game. If we do not have an identifier
+  for a queued animation frame, then we are currently paused, and we would like
+  to call `requestAnimationFrame` to resume the game.
+-->
+<ul>
+<li>Lorsque le bouton lecture/pause sera actionné, on va regarder si nous avons un
+identifiant pour un calcul d'une génération de l'animation. Si c'est le cas,
+alors le jeu est actuellement en cours de lecture, et cela veut donc dire que
+nous souhaitons annuler le calcul pour éviter que <code>boucleDeRendu</code> soit appelé
+à nouveau, ce qui aura pour effet de mettre en pause le jeu. Si nous n'avons
+pas d'identifiant pour un calcul d'une génération de l'animation, alors cela
+veut dire que nous sommes actuellement en pause, et nous devons faire appel à
+<code>requestAnimationFrame</code> pour reprendre le jeu.</li>
+</ul>
+<!--
+Because the JavaScript is driving the Rust and WebAssembly, this is all we need
+to do, and we don't need to change the Rust sources.
+-->
+<p>Comme le JavaScript pilote le Rust via le WebAssembly, c'est tout ce que nous
+avons besoin de faire, et nous n'avons pas besoin de changer le code source
+Rust.</p>
+<!--
+We introduce the `animationId` variable to keep track of the identifier returned
+by `requestAnimationFrame`. When there is no queued animation frame, we set this
+variable to `null`.
+-->
+<p>Nous ajoutons la variable <code>animationId</code> pour conserver l'identifiant retourné
+par <code>requestAnimationFrame</code>. Lorsqu'il n'y a pas de calcul d'une génération de
+l'animation, nous donnons assignons la valeur <code>null</code> à cette variable.</p>
+<!--
+```js
+let animationId = null;
+
+// This function is the same as before, except the
+// result of `requestAnimationFrame` is assigned to
+// `animationId`.
+const renderLoop = () => {
+  drawGrid();
+  drawCells();
+
+  universe.tick();
+
+  animationId = requestAnimationFrame(renderLoop);
+};
+```
+-->
+<pre><code class="language-js">let animationId = null;
+
+// Cette fonction est la même qu'avant, sauf que le résultat de
+// `requestAnimationFrame` est assigné à `animationId`.
+const boucleDeRendu = () =&gt; {
+  dessinerGrille();
+  dessinerCellules();
+
+  univers.tick();
+
+  animationId = requestAnimationFrame(boucleDeRendu);
+};
+</code></pre>
+<!--
+At any instant in time, we can tell whether the game is paused or not by
+inspecting the value of `animationId`:
+-->
+<p>A n'importe quel moment, nous pouvons savoir si le jeu est en pause ou non en
+vérifiant la valeur de <code>animationId</code> :</p>
+<!--
+```js
+const isPaused = () => {
+  return animationId === null;
+};
+```
+-->
+<pre><code class="language-js">const estEnPause = () =&gt; {
+  return animationId === null;
+};
+</code></pre>
+<!--
+Now, when the play/pause button is clicked, we check whether the game is
+currently paused or playing, and resume the `renderLoop` animation or cancel the
+next animation frame respectively. Additionally, we update the button's text
+icon to reflect the action that the button will take when clicked next.
+-->
+<p>Maintenant lorsque le bouton lecture/pause est cliqué, nous vérifions si le jeu
+est en pause ou en lecture, et respectivement nous reprenons l'animation
+<code>boucleDeRendu</code> ou nous arrêtons le calcul de la prochaine génération de
+l'animation. De plus, nous allons changer le texte du bouton pour refléter
+l'action que le bouton va faire lors du prochain clic.</p>
+<!--
+```js
+const playPauseButton = document.getElementById("play-pause");
+
+const play = () => {
+  playPauseButton.textContent = "⏸";
+  renderLoop();
+};
+
+const pause = () => {
+  playPauseButton.textContent = "▶";
+  cancelAnimationFrame(animationId);
+  animationId = null;
+};
+
+playPauseButton.addEventListener("click", event => {
+  if (isPaused()) {
+    play();
+  } else {
+    pause();
+  }
+});
+```
+-->
+<pre><code class="language-js">const boutonLecturePause = document.getElementById(&quot;lecture-pause&quot;);
+
+const lecture = () =&gt; {
+  boutonLecturePause.textContent = &quot;⏸&quot;;
+  boucleDeRendu();
+};
+
+const pause = () =&gt; {
+  boutonLecturePause.textContent = &quot;▶&quot;;
+  cancelAnimationFrame(animationId);
+  animationId = null;
+};
+
+boutonLecturePause.addEventListener(&quot;click&quot;, event =&gt; {
+  if (estEnPause()) {
+    lecture();
+  } else {
+    pause();
+  }
+});
+</code></pre>
+<!--
+Finally, we were previously kick-starting the game and its animation by calling
+`requestAnimationFrame(renderLoop)` directly, but we want to replace that with a
+call to `play` so that the button gets the correct initial text icon.
+-->
+<p>Enfin, jusqu'ici nous avons démarré le jeu et son animation en faisant
+directement appel à <code>requestAnimationFrame(boucleDeRendu)</code>, mais nous voulons
+remplacer cela par l'appel à <code>lecture</code> pour que le bouton ait la bonne icone
+initiale.</p>
+<!--
+```diff
+// This used to be `requestAnimationFrame(renderLoop)`.
+play();
+```
+-->
+<pre><code class="language-diff">// On utilise cela à la place de `requestAnimationFrame(boucleDeRendu)`.
+lecture();
+</code></pre>
+<!--
+Refresh [http://localhost:8080/](http://localhost:8080/) and we should now be
+able to pause and resume the game by clicking on the button!
+-->
+<p>Rafraîchissez <a href="http://localhost:8080/">http://localhost:8080/</a> et vous devriez
+maintenant mettre en pause et reprendre le jeu en cliquant sur le bouton !</p>
+<!--
+## Toggling a Cell's State on `"click"` Events
+-->
+<h2><a class="header" href="#changer-létat-dune-cellule-avec-un-évènement-click" id="changer-létat-dune-cellule-avec-un-évènement-click">Changer l'état d'une cellule avec un évènement <code>&quot;click&quot;</code></a></h2>
+<!--
+Now that we can pause the game, it's time to add the ability to mutate the cells
+by clicking on them.
+-->
+<p>Maintenant que nous pouvons mettre le jeu en pause, nous pouvons ajouter la
+possibilité de muter les cellules en cliquant sur elles.</p>
+<!--
+To toggle a cell is to flip its state from alive to dead or from dead to
+alive. Add a `toggle` method to `Cell` in `wasm-game-of-life/src/lib.rs`:
+-->
+<p>Pour basculer le statut d'une cellule de vivante à morte, ou de morte à vivante.
+Ajoutez une méthode <code>basculer</code> à <code>Cellule</code> dans
+<code>wasm-jeu-de-la-vie/src/lib.rs</code> :</p>
+<!--
+```rust
+impl Cell {
+    fn toggle(&mut self) {
+        *self = match *self {
+            Cell::Dead => Cell::Alive,
+            Cell::Alive => Cell::Dead,
+        };
+    }
+}
+```
+-->
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>impl Cellule {
+    fn basculer(&amp;mut self) {
+        *self = match *self {
+            Cellule::Morte =&gt; Cellule::Vivante,
+            Cellule::Vivante =&gt; Cellule::Morte,
+        };
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<!--
+To toggle the state of a cell at given row and column, we translate the row and
+column pair into an index into the cells vector and call the toggle method on
+the cell at that index:
+-->
+<p>Pour basculer l'état d'une cellule à une ligne et colonne donnée, nous
+traduisons le couple ligne et colonne en indice du vecteur de toutes les
+cellules et nous faisons appel à la méthode <code>basculer</code> sur la cellule à cet
+indice :</p>
+<!--
+```rust
+/// Public methods, exported to JavaScript.
+#[wasm_bindgen]
+impl Universe {
+    // ...
+
+    pub fn toggle_cell(&mut self, row: u32, column: u32) {
+        let idx = self.get_index(row, column);
+        self.cells[idx].toggle();
+    }
+}
+```
+-->
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>/// Méthodes publiques, exportées en JavaScript.
+#[wasm_bindgen]
+impl Univers {
+    // ...
+
+    pub fn basculer_cellule(&amp;mut self, ligne: u32, colonne: u32) {
+        let indice = self.calculer_indice(ligne, colonne);
+        self.cellules[indice].basculer();
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<!--
+This method is defined within the `impl` block that is annotated with
+`#[wasm_bindgen]` so that it can be called by JavaScript.
+-->
+<p>Cette méthode est définie dans le bloc <code>impl</code> qui est annoté avec
+<code>#[wasm_bingen]</code> afin qu'il puisse être appelé en JavaScript.</p>
+<!--
+In `wasm-game-of-life/www/index.js`, we listen to click events on the `<canvas>`
+element, translate the click event's page-relative coordinates into
+canvas-relative coordinates, and then into a row and column, invoke the
+`toggle_cell` method, and finally redraw the scene.
+-->
+<p>Dans <code>wasm-jeu-de-la-vie/www/index.js</code>, nous écoutons les évènements de clics
+sur le noeud <code>&lt;canvas&gt;</code>, puis nous traduisons les coordonnées du clic dans le
+contexte de la page en coordonnées dans le canvas, et ensuite ces coordonnées
+en ligne et colonne, puis nous évoquons la méthode <code>basculer_cellule</code>, et enfin
+nous redessinons la scène.</p>
+<!--
+```js
+canvas.addEventListener("click", event => {
+  const boundingRect = canvas.getBoundingClientRect();
+
+  const scaleX = canvas.width / boundingRect.width;
+  const scaleY = canvas.height / boundingRect.height;
+
+  const canvasLeft = (event.clientX - boundingRect.left) * scaleX;
+  const canvasTop = (event.clientY - boundingRect.top) * scaleY;
+
+  const row = Math.min(Math.floor(canvasTop / (CELL_SIZE + 1)), height - 1);
+  const col = Math.min(Math.floor(canvasLeft / (CELL_SIZE + 1)), width - 1);
+
+  universe.toggle_cell(row, col);
+
+  drawGrid();
+  drawCells();
+});
+```
+-->
+<pre><code class="language-js">canvas.addEventListener(&quot;click&quot;, evenement =&gt; {
+  const zoneRectangulaire = canvas.getBoundingClientRect();
+
+  const echelleX = canvas.width / zoneRectangulaire.width;
+  const echelleY = canvas.height / zoneRectangulaire.height;
+
+  const distanceGaucheDuCanvas = (evenement.clientX - zoneRectangulaire.left) * echelleX;
+  const distanceHautDuCanvas = (evenement.clientY - zoneRectangulaire.top) * echelleY;
+
+  const ligne = Math.min(Math.floor(distanceHautDuCanvas / (CELL_SIZE + 1)), hauteur - 1);
+  const colonne = Math.min(Math.floor(distanceGaucheDuCanvas / (CELL_SIZE + 1)), largeur - 1);
+
+  univers.basculer_cellule(ligne, colonne);
+
+  dessinerGrille();
+  dessinerCellules();
+});
+</code></pre>
+<!--
+Rebuild with `wasm-pack build` in `wasm-game-of-life`, then refresh
+[http://localhost:8080/](http://localhost:8080/) again and we can now draw our
+own patterns by clicking on the cells and toggling their state.
+-->
+<p>Recompilez avec <code>wasm-pack build</code> dans le dossier <code>wasm-jeu-de-la-vie</code>, ensuite
+rafraîchissez à nouveau la page <a href="http://localhost:8080/">http://localhost:8080/</a>
+et vous devriez pouvoir dessiner vos propres schémas en cliquant sur les
+cellules pour pouvoir changer leur état.</p>
+<!--
+## Exercises
+-->
+<h2><a class="header" href="#exercices" id="exercices">Exercices</a></h2>
+<!--
+* Introduce an [`<input type="range">`][input-range] widget to control how many
+  ticks occur per animation frame.
+-->
+<ul>
+<li>Ajouter un composant <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range"><code>&lt;input type=&quot;range&quot;&gt;</code></a> pour pouvoir régler
+combien de ticks se produisent à chaque séquence de l'animation.</li>
+</ul>
+<!--
+* Add a button that resets the universe to a random initial state when
+  clicked. Another button that resets the universe to all dead cells.
+-->
+<ul>
+<li>Ajouter un bouton qui réinitialise l'univers dans un état initial aléatoire
+lorsqu'on clique dessus. Et un autre bouton qui réinitialise l'univers avec
+uniquement des cellules mortes.</li>
+</ul>
+<!--
+* On `Ctrl + Click`, insert a
+  [glider](https://en.wikipedia.org/wiki/Glider_(Conway%27s_Life)) centered on
+  the target cell. On `Shift + Click`, insert a pulsar.
+-->
+<ul>
+<li>Lors d'un <code>Ctrl + Clic</code>, insérez un
+<a href="https://en.wikipedia.org/wiki/Glider_(Conway%27s_Life)">planeur</a> centré sur
+la cellule cible.
+Lors d'un <code>Shift + Clic</code>, insérez un pulsar.</li>
+</ul>
+<!--
+[input-range]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range
+-->
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../game-of-life/debugging.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../game-of-life/debugging.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="../github-button.js"></script>
+        
+
+        
+
+    </body>
+</html>

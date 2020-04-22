@@ -1,0 +1,509 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>🚧 Débogage - Rust et WebAssembly</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="../translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="../why-rust-and-webassembly.html"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li><li class="expanded "><a href="../background-and-concepts.html"><strong aria-hidden="true">3.</strong> 🚧 Le contexte et les concepts</a></li><li><ol class="section"><li class="expanded "><a href="../what-is-webassembly.html"><strong aria-hidden="true">3.1.</strong> 🚧 Qu'est-ce que le WebAssembly ?</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="../game-of-life/introduction.html"><strong aria-hidden="true">4.</strong> 🚧 Tutoriel</a></li><li><ol class="section"><li class="expanded "><a href="../game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> 🚧 Réglages</a></li><li class="expanded "><a href="../game-of-life/hello-world.html"><strong aria-hidden="true">4.2.</strong> 🚧 Hello, World !</a></li><li class="expanded "><a href="../game-of-life/rules.html"><strong aria-hidden="true">4.3.</strong> 🚧 Les règles</a></li><li class="expanded "><a href="../game-of-life/implementing.html"><strong aria-hidden="true">4.4.</strong> 🚧 Implémenter la vie</a></li><li class="expanded "><a href="../game-of-life/testing.html"><strong aria-hidden="true">4.5.</strong> 🚧 Tester la vie</a></li><li class="expanded "><a href="../game-of-life/debugging.html" class="active"><strong aria-hidden="true">4.6.</strong> 🚧 Débogage</a></li><li class="expanded "><a href="../game-of-life/interactivity.html"><strong aria-hidden="true">4.7.</strong> 🚧 Ajouter de l'interactivité</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Rust et WebAssembly</h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <blockquote>
+<h1><a class="header" href="#-attention-peinture-fraîche-" id="-attention-peinture-fraîche-">🚧 Attention, peinture fraîche !</a></h1>
+<p>Cette page a été traduite par une seule personne et n'a pas été relue et
+vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
+erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
+</blockquote>
+<!--
+# Debugging
+-->
+<h1><a class="header" href="#débogage" id="débogage">Débogage</a></h1>
+<!--
+Before we write much more code, we will want to have some debugging tools in our
+belt for when things go wrong. Take a moment to review the [reference page
+listing tools and approaches available for debugging Rust-generated
+WebAssembly][reference-debugging].
+-->
+<p>Avant d'écrire plus de code, nous devons nous équiper d'outils de débogage pour
+les moments où cela se passe mal. Prenez donc une minute pour consulter la <a href="reference/debugging.html">page
+de référence qui liste les outils et les approches pour déboguer le WebAssembly
+généré par Rust</a>.</p>
+<!--
+[reference-debugging]: ../reference/debugging.html
+-->
+<!--
+## Enable Logging for Panics
+-->
+<h2><a class="header" href="#activer-les-journaux-pour-les-paniques" id="activer-les-journaux-pour-les-paniques">Activer les journaux pour les paniques</a></h2>
+<!--
+[If our code panics, we want informative error messages to appear in the
+developer console.](../reference/debugging.html#logging-panics)
+-->
+<p><a href="reference/debugging.html#journaliser-les-paniques">Si notre code panique, nous souhaitons avoir un message d'erreur qui nous en
+informe dans la console de
+développement</a>.</p>
+<!--
+Our `wasm-pack-template` comes with an optional, enabled-by-default dependency
+on [the `console_error_panic_hook` crate][panic-hook] that is configured in
+`wasm-game-of-life/src/utils.rs`. All we need to do is install the hook in an
+initialization function or common code path. We can call it inside the
+`Universe::new` constructor in `wasm-game-of-life/src/lib.rs`:
+-->
+<p>Notre <code>wasm-pack-template-fr</code> applique une dépendance optionnelle et activée par
+défaut envers <a href="https://github.com/rustwasm/console_error_panic_hook">la crate <code>console_error_panic_hook</code></a> qui est
+configurée dans <code>wasm-jeu-de-la-vie/src/utils.rs</code>. Tout ce que nous avons besoin
+de faire est d'installer le système dans une fonction d'initialisation ou dans
+un code standard qui s'exécutera. Nous pouvons faire appel à cela dans le
+constructeur <code>Univers::new</code> dans <code>wasm-jeu-de-la-vie/src/lib.rs</code> :</p>
+<!--
+```rust
+pub fn new() -> Universe {
+    utils::set_panic_hook();
+
+    // ...
+}
+```
+-->
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>pub fn new() -&gt; Univers {
+    utils::set_panic_hook();
+
+    // ...
+}
+<span class="boring">}
+</span></code></pre></pre>
+<!--
+[panic-hook]: https://github.com/rustwasm/console_error_panic_hook
+-->
+<!--
+## Add Logging to our Game of Life
+-->
+<h2><a class="header" href="#ajouter-des-journaux-dans-notre-jeu-de-la-vie" id="ajouter-des-journaux-dans-notre-jeu-de-la-vie">Ajouter des journaux dans notre jeu de la vie</a></h2>
+<!--
+Let's [use the `console.log` function via the `web-sys` crate to add some
+logging][logging] about each cell in our `Universe::tick` function.
+-->
+<p><a href="reference/debugging.html#journaliser-avec-les-api-de-console">Utilisons la fonction <code>console.log</code> via la crate <code>web-sys</code> pour ajouter
+quelques journaux</a> sur le traitement de chaque cellule dans notre
+fonction <code>Univers::tick</code>.</p>
+<!--
+First, add `web-sys` as a dependency and enable its `"console"` feature in
+`wasm-game-of-life/Cargo.toml`:
+-->
+<p>Pour commencer, ajoutez <code>web-sys</code> comme dépendance et ajoutez sa fonctionnalité
+<code>&quot;console&quot;</code> dans <code>wasm-jeu-de-la-vie/Cargo.toml</code> :</p>
+<!--
+```toml
+[dependencies.web-sys]
+version = "0.3"
+features = [
+  "console",
+]
+```
+-->
+<pre><code class="language-toml">[dependencies.web-sys]
+version = &quot;0.3&quot;
+features = [
+  &quot;console&quot;,
+]
+</code></pre>
+<!--
+For ergonomics, we'll wrap the `console.log` function up in a `println!`-style
+macro:
+-->
+<p>Pour que ce soit plus pratique, nous allons intégrer la fonction <code>console.log</code>
+dans une macro du même style que <code>println!</code> :</p>
+<!--
+[logging]: ../reference/debugging.html#logging-with-the-console-apis
+-->
+<!--
+```rust
+extern crate web_sys;
+
+// A macro to provide `println!(..)`-style syntax for `console.log` logging.
+macro_rules! log {
+    ( $( $t:tt )* ) => {
+        web_sys::console::log_1(&format!( $( $t )* ).into());
+    }
+}
+```
+-->
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>extern crate web_sys;
+
+// Une macro dans le même style que `println!(..)` pour la journalisation avec
+// `console.log`.
+macro_rules! log {
+    ( $( $t:tt )* ) =&gt; {
+        web_sys::console::log_1(&amp;format!( $( $t )* ).into());
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<!--
+Now, we can start logging messages to the console by inserting calls to `log` in
+Rust code. For example, to log each cell's state, live neighbors count, and next
+state, we could modify `wasm-game-of-life/src/lib.rs` like this:
+-->
+<p>Maintenant nous pouvons commencer à ajouter des journaux dans la console en
+insérant des appels à <code>log</code> dans le code Rust. Par exemple, pour afficher l'état
+de chaque cellule, le compteur de ses voisines vivantes, et le prochain état,
+nous pouvons modifier <code>wasm-jeu-de-la-vie/src/lib.rs</code> comme ceci :</p>
+<!--
+```diff
+diff --git a/src/lib.rs b/src/lib.rs
+index f757641..a30e107 100755
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -123,6 +122,14 @@ impl Universe {
+                 let cell = self.cells[idx];
+                 let live_neighbors = self.live_neighbor_count(row, col);
+
++                log!(
++                    "cell[{}, {}] is initially {:?} and has {} live neighbors",
++                    row,
++                    col,
++                    cell,
++                    live_neighbors
++                );
++
+                 let next_cell = match (cell, live_neighbors) {
+                     // Rule 1: Any live cell with fewer than two live neighbours
+                     // dies, as if caused by underpopulation.
+@@ -140,6 +147,8 @@ impl Universe {
+                     (otherwise, _) => otherwise,
+                 };
+
++                log!("    it becomes {:?}", next_cell);
++
+                 next[idx] = next_cell;
+             }
+         }
+```
+-->
+<pre><code class="language-diff">diff --git a/src/lib.rs b/src/lib.rs
+index f757641..a30e107 100755
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -123,6 +122,14 @@ impl Univers {
+                 let cellule = self.cellules[indice];
+                 let voisines_vivantes = self.compter_voisines_vivantes(ligne, colonne);
+
++                log!(
++                    &quot;La cellule [{}, {}] est initialement {:?} et a {} voisines vivantes&quot;,
++                    ligne,
++                    colonne,
++                    cellule,
++                    voisines_vivantes
++                );
++
+                 let prochain_etat = match (cellule, voisines_vivantes) {
+                     // Règle 1 : toute cellule vivante avec moins de deux
+                     // voisines vivantes meurt, comme si cela était un effet de
+                     // sous-population.
+@@ -140,6 +147,8 @@ impl Universe {
+                     (statut, _) =&gt; statut,
+                 };
+
++                log!(&quot;    et elle devient {:?}&quot;, prochain_etat);
++
+                 generation_suivante[idx] = prochain_etat;
+             }
+         }
+</code></pre>
+<!--
+## Using a Debugger to Pause Between Each Tick
+-->
+<h2><a class="header" href="#utiliser-un-débogueur-pour-faire-une-pause-entre-chaque-tick" id="utiliser-un-débogueur-pour-faire-une-pause-entre-chaque-tick">Utiliser un débogueur pour faire une pause entre chaque tick</a></h2>
+<!--
+[Browser's stepping debuggers are useful for inspecting the JavaScript that our
+Rust-generated WebAssembly interacts
+with.](../reference/debugging.html#using-a-debugger)
+-->
+<p><a href="reference/debugging.html#utiliser-un-d%C3%A9bogueur">Les débogueurs par étape des navigateurs sont utiles pour inspecter le
+JavaScript avec lequel interagit notre WebAssembly généré par
+Rust</a>.</p>
+<!--
+For example, we can use the debugger to pause on each iteration of our
+`renderLoop` function by placing [a JavaScript `debugger;` statement][dbg-stmt]
+above our call to `universe.tick()`.
+-->
+<p>Par exemple, nous pouvons utiliser le débogueur pour faire une pause sur chaque
+itération de notre fonction <code>boucleDeRendu</code> en plaçant <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Instructions/debugger">une instruction
+JavaScript <code>debugger;</code></a> juste avant l'appel à <code>univers.tick()</code>.</p>
+<!--
+```js
+const renderLoop = () => {
+  debugger;
+  universe.tick();
+
+  drawGrid();
+  drawCells();
+
+  requestAnimationFrame(renderLoop);
+};
+```
+-->
+<pre><code class="language-js">const boucleDeRendu = () =&gt; {
+  debugger;
+  univers.tick();
+
+  dessinerGrille();
+  dessinerCellules();
+
+  requestAnimationFrame(boucleDeRendu);
+};
+</code></pre>
+<!--
+This provides us with a convenient checkpoint for inspecting logged messages,
+and comparing the currently rendered frame to the previous one.
+-->
+<p>Cela nous fournit un point de passage efficace pour inspecter les journaux, et
+pour comparer le rendu actuel avec le précédent.</p>
+<!--
+[dbg-stmt]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger
+-->
+<!--
+[![Screenshot of debugging the Game of Life](../images/game-of-life/debugging.png)](../images/game-of-life/debugging.png)
+-->
+<p><a href="images/game-of-life/debugging.png"><img src="images/game-of-life/debugging.png" alt="Capture d'écran du débogage du jeu de la vie" /></a></p>
+<!--
+## Exercises
+-->
+<h2><a class="header" href="#exercices" id="exercices">Exercices</a></h2>
+<!--
+* Add logging to the `tick` function that records the row and column of each
+  cell that transitioned states from live to dead or vice versa.
+-->
+<ul>
+<li>Ajoutez des journaux à la fonction <code>tick</code> qui affiche la ligne et la colonne
+de chaque cellule qui chaque d'état, de vivante à morte et vice-versa.</li>
+</ul>
+<!--
+* Introduce a `panic!()` in the `Universe::new` method. Inspect the panic's
+  backtrace in your Web browser's JavaScript debugger. Disable debug symbols,
+  rebuild without the `console_error_panic_hook` optional dependency, and
+  inspect the stack trace again. Not as useful is it?
+-->
+<ul>
+<li>Ajoutez un <code>panic!()</code> dans la méthode <code>Univers::new</code>. Inspectez alors la trace
+de pile dans le débogueur JavaScript de votre navigateur Web. Puis, désactivez
+les symboles de débogage, recompilez sans la dépendance optionnelle à
+<code>console_error_panic_hook</code>, et inspectez à nouveau la trace de pile. Pratique,
+n'est-ce pas ?</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../game-of-life/testing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../game-of-life/interactivity.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../game-of-life/testing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../game-of-life/interactivity.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="../github-button.js"></script>
+        
+
+        
+
+    </body>
+</html>
