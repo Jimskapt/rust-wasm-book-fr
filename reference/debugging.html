@@ -1,0 +1,534 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>🚧 Débogage - Rust et WebAssembly</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> 🚧 Introduction</a></li><li><ol class="section"><li class="expanded "><a href="../translation-terms.html"><strong aria-hidden="true">1.1.</strong> Traduction des termes</a></li></ol></li><li class="expanded "><a href="../why-rust-and-webassembly.html"><strong aria-hidden="true">2.</strong> 🚧 Pourquoi Rust et le WebAssembly ?</a></li><li class="expanded "><a href="../background-and-concepts.html"><strong aria-hidden="true">3.</strong> 🚧 Le contexte et les concepts</a></li><li><ol class="section"><li class="expanded "><a href="../what-is-webassembly.html"><strong aria-hidden="true">3.1.</strong> 🚧 Qu'est-ce que le WebAssembly ?</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="../game-of-life/introduction.html"><strong aria-hidden="true">4.</strong> 🚧 Tutoriel</a></li><li><ol class="section"><li class="expanded "><a href="../game-of-life/setup.html"><strong aria-hidden="true">4.1.</strong> 🚧 Réglages</a></li><li class="expanded "><a href="../game-of-life/hello-world.html"><strong aria-hidden="true">4.2.</strong> 🚧 Hello, World !</a></li><li class="expanded "><a href="../game-of-life/rules.html"><strong aria-hidden="true">4.3.</strong> 🚧 Les règles</a></li><li class="expanded "><a href="../game-of-life/implementing.html"><strong aria-hidden="true">4.4.</strong> 🚧 Implémenter la vie</a></li><li class="expanded "><a href="../game-of-life/testing.html"><strong aria-hidden="true">4.5.</strong> 🚧 Tester la vie</a></li><li class="expanded "><a href="../game-of-life/debugging.html"><strong aria-hidden="true">4.6.</strong> 🚧 Débogage</a></li><li class="expanded "><a href="../game-of-life/interactivity.html"><strong aria-hidden="true">4.7.</strong> 🚧 Ajouter de l'interactivité</a></li><li class="expanded "><a href="../game-of-life/time-profiling.html"><strong aria-hidden="true">4.8.</strong> 💬 Time Profiling</a></li><li class="expanded "><a href="../game-of-life/code-size.html"><strong aria-hidden="true">4.9.</strong> 💬 Shrinking .wasm Size</a></li><li class="expanded "><a href="../game-of-life/publishing-to-npm.html"><strong aria-hidden="true">4.10.</strong> 💬 Publishing to npm</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="../reference/index.html"><strong aria-hidden="true">5.</strong> 💬 Reference</a></li><li><ol class="section"><li class="expanded "><a href="../reference/crates.html"><strong aria-hidden="true">5.1.</strong> 💬 Crates You Should Know</a></li><li class="expanded "><a href="../reference/tools.html"><strong aria-hidden="true">5.2.</strong> 💬 Tools You Should Know</a></li><li class="expanded "><a href="../reference/project-templates.html"><strong aria-hidden="true">5.3.</strong> 💬 Project Templates</a></li><li class="expanded "><a href="../reference/debugging.html" class="active"><strong aria-hidden="true">5.4.</strong> 🚧 Débogage</a></li><li class="expanded "><a href="../reference/time-profiling.html"><strong aria-hidden="true">5.5.</strong> 🚧 Le profilage temporel</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Rust et WebAssembly</h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <blockquote>
+<h1><a class="header" href="#-attention-peinture-fraîche-" id="-attention-peinture-fraîche-">🚧 Attention, peinture fraîche !</a></h1>
+<p>Cette page a été traduite par une seule personne et n'a pas été relue et
+vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
+erronées, être formulées maladroitement, ou contenir d'autres types de fautes.</p>
+</blockquote>
+<!--
+# Debugging Rust-Generated WebAssembly
+-->
+<h1><a class="header" href="#débogage-du-webassembly-généré-par-rust" id="débogage-du-webassembly-généré-par-rust">Débogage du WebAssembly généré par Rust</a></h1>
+<!--
+This section contains tips for debugging Rust-generated WebAssembly.
+-->
+<p>Cette section présente des conseils pour le débogage du WebAssembly généré par
+Rust.</p>
+<!--
+## Building with Debug Symbols
+-->
+<h2><a class="header" href="#compiler-avec-des-symboles-de-débogage" id="compiler-avec-des-symboles-de-débogage">Compiler avec des symboles de débogage</a></h2>
+<!--
+> ⚡ When debugging, always make sure you are building with debug symbols!
+-->
+<blockquote>
+<p>⚡ Lorsque déboguez, assurez-vous que vous compilez avec les symboles de
+débogage !</p>
+</blockquote>
+<!--
+If you don't have debug symbols enabled, then the `"name"` custom section won't
+be present in the compiled `.wasm` binary, and stack traces will have function
+names like `wasm-function[42]` rather than the Rust name of the function, like
+`wasm_game_of_life::Universe::live_neighbor_count`.
+-->
+<p>Si n'activez pas les symboles de débogage, la section personnalisée <code>&quot;name&quot;</code> ne
+sera pas présente dans le binaire compilé en <code>.wasm</code>, et les traces de pile
+auront des noms de fonctions comme <code>wasm-function[42]</code> plutôt que le nom de la
+fonction en Rust, comme
+<code>wasm_jeu_de_la_vie::Univers::compter_voisines_vivantes</code>.</p>
+<!--
+When using a "debug" build (aka `wasm-pack build --debug` or `cargo build`)
+debug symbols are enabled by default.
+-->
+<p>Les symboles de débogage sont activés par défaut lorsqu'un utilise une
+compilation en mode &quot;debug&quot; (comme <code>wasm-pack build --debug</code> ou <code>cargo build</code>).</p>
+<!--
+With a "release" build, debug symbols are not enabled by default. To enable
+debug symbols, ensure that you `debug = true` in the `[profile.release]` section
+of your `Cargo.toml`:
+-->
+<p>Avec une compilation en mode &quot;release&quot;, les symboles de débogage ne sont pas
+activés par défaut. Pour activer les symboles de débogage, assurez-vous que
+<code>debug = true</code> soit bien présent dans la section <code>[profile.release]</code> de votre
+<code>Cargo.toml</code> :</p>
+<!--
+```toml
+[profile.release]
+debug = true
+```
+-->
+<pre><code class="language-toml">[profile.release]
+debug = true
+</code></pre>
+<!--
+## Logging with the `console` APIs
+-->
+<h2><a class="header" href="#journaliser-avec-les-api-de-console" id="journaliser-avec-les-api-de-console">Journaliser avec les API de <code>console</code></a></h2>
+<!--
+Logging is one of the most effective tools we have for proving and disproving
+hypotheses about why our programs are buggy. On the Web, [the `console.log`
+function](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) is the
+way to log messages to the browser's developer tools console.
+-->
+<p>La journalisation est un des outils les plus efficients que nous avons à notre
+disposition pour prouver et réfuter des hypothèses sur le comportement
+déficient de nos programmes. Sur le Web, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Console/log">la fonction
+<code>console.log</code></a> est
+une manière de journaliser les messages dans la console d'outils de
+développement du navigateur.</p>
+<!--
+We can use [the `web-sys` crate][web-sys] to get access to the `console` logging
+functions:
+-->
+<p>Nous pouvons utiliser <a href="https://rustwasm.github.io/wasm-bindgen/web-sys/index.html">la crate <code>web-sys</code></a> pour accéder aux fonctions
+de journalisation de <code>console</code> :</p>
+<!--
+```rust
+extern crate web_sys;
+
+web_sys::console::log_1(&"Hello, world!".into());
+```
+-->
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>extern crate web_sys; // (faculatif en Rust 2018)
+
+web_sys::console::log_1(&amp;&quot;Hello, world!&quot;.into());
+<span class="boring">}
+</span></code></pre></pre>
+<!--
+Alternatively, [the `console.error`
+function](https://developer.mozilla.org/en-US/docs/Web/API/Console/error) has
+the same signature as `console.log`, but developer tools tend to also capture
+and display a stack trace alongside the logged message when `console.error` is
+used.
+-->
+<p>Sachez aussi que <a href="https://developer.mozilla.org/en-US/docs/Web/API/Console/error">la fonction
+<code>console.error</code></a>
+a la même signature que <code>console.log</code>, mais les outils de développement ont
+tendance à aussi récupérer et afficher les traces de pile à côté du message de
+journal lorsqu'on utilise <code>console.error</code>.</p>
+<!--
+### References
+-->
+<h3><a class="header" href="#documentations-sur-console" id="documentations-sur-console">Documentations sur <code>console</code></a></h3>
+<!--
+* Using `console.log` with the `web-sys` crate:
+  * [`web_sys::console::log` takes an array of values to log](https://rustwasm.github.io/wasm-bindgen/api/web_sys/console/fn.log.html)
+  * [`web_sys::console::log_1` logs a single value](https://rustwasm.github.io/wasm-bindgen/api/web_sys/console/fn.log_1.html)
+  * [`web_sys::console::log_2` logs two values](https://rustwasm.github.io/wasm-bindgen/api/web_sys/console/fn.log_2.html)
+  * Etc...
+* Using `console.error` with the `web-sys` crate:
+  * [`web_sys::console::error` takes an array of values to log](https://rustwasm.github.io/wasm-bindgen/api/web_sys/console/fn.error.html)
+  * [`web_sys::console::error_1` logs a single value](https://rustwasm.github.io/wasm-bindgen/api/web_sys/console/fn.error_1.html)
+  * [`web_sys::console::error_2` logs two values](https://rustwasm.github.io/wasm-bindgen/api/web_sys/console/fn.error_2.html)
+  * Etc...
+* [The `console` object on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Console)
+* [Firefox Developer Tools — Web Console](https://developer.mozilla.org/en-US/docs/Tools/Web_Console)
+* [Microsoft Edge Developer Tools — Console](https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide/console)
+* [Get Started with the Chrome DevTools Console](https://developers.google.com/web/tools/chrome-devtools/console/get-started)
+-->
+<ul>
+<li>Utiliser <code>console.log</code> avec la crate <code>web-sys</code> :
+<ul>
+<li><a href="https://rustwasm.github.io/wasm-bindgen/api/web_sys/console/fn.log.html"><code>web_sys::console::log</code> prend en argument un tableau de valeurs à
+journaliser</a></li>
+<li><a href="https://rustwasm.github.io/wasm-bindgen/api/web_sys/console/fn.log_1.html"><code>web_sys::console::log_1</code> journalise une seule
+valeur</a></li>
+<li><a href="https://rustwasm.github.io/wasm-bindgen/api/web_sys/console/fn.log_2.html"><code>web_sys::console::log_2</code> journalise deux
+valeurs</a></li>
+<li>Etc ...</li>
+</ul>
+</li>
+<li>Utiliser <code>console.error</code> avec la crate <code>web-sys</code> :
+<ul>
+<li><a href="https://rustwasm.github.io/wasm-bindgen/api/web_sys/console/fn.error.html"><code>web_sys::console::error</code> prend en argument un tableau de valeurs à
+journaliser</a></li>
+<li><a href="https://rustwasm.github.io/wasm-bindgen/api/web_sys/console/fn.error_1.html"><code>web_sys::console::error_1</code> journalise une seule
+valeur</a></li>
+<li><a href="https://rustwasm.github.io/wasm-bindgen/api/web_sys/console/fn.error_2.html"><code>web_sys::console::error_2</code> journalise deux
+valeurs</a></li>
+<li>Etc ...</li>
+</ul>
+</li>
+<li><a href="https://developer.mozilla.org/fr/docs/Web/API/Console">L'objet <code>console</code> sur
+MDN</a></li>
+<li><a href="https://developer.mozilla.org/fr/docs/Outils/Console_Web">Outils de Développement Firefox — Console
+Web</a></li>
+<li><a href="https://docs.microsoft.com/fr-fr/microsoft-edge/devtools-guide/console">Outils de Développement de Microsoft Edge —
+Console</a></li>
+<li><a href="https://developers.google.com/web/tools/chrome-devtools/console">Débuter avec la Console de Chrome
+DevTools</a></li>
+</ul>
+<!--
+## Logging Panics
+-->
+<h2><a class="header" href="#journaliser-les-paniques" id="journaliser-les-paniques">Journaliser les paniques</a></h2>
+<!--
+[The `console_error_panic_hook` crate logs unexpected panics to the developer
+console via `console.error`.][panic-hook] Rather than getting cryptic,
+difficult-to-debug `RuntimeError: unreachable executed` error messages, this
+gives you Rust's formatted panic message.
+-->
+<p><a href="https://github.com/rustwasm/console_error_panic_hook">La crate <code>console_error_panic_hook</code> journalise les paniques involontaires dans
+la console avec <code>console.error</code></a>. Plutôt que d'avoir des messages
+d'erreur abstraits, difficiles à déboguer comme le
+<code>RuntimeError: unreachable executed</code>, il vous fournit à la place un message de
+panique formaté par Rust.</p>
+<!--
+All you need to do is install the hook by calling
+`console_error_panic_hook::set_once()` in an initialization function or common
+code path:
+-->
+<p>Tout ce que vous avez besoin de faire est d'installer ce système en faisant
+appel à <code>console_error_panic_hook::set_once()</code> dans une fonction
+d'initialisation ou dans un code standard qui s'exécutera :</p>
+<!--
+```rust
+#[wasm_bindgen]
+pub fn init_panic_hook() {
+    console_error_panic_hook::set_once();
+}
+```
+-->
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>#[wasm_bindgen]
+pub fn installer_systeme_journalisation_panique() {
+    console_error_panic_hook::set_once();
+}
+<span class="boring">}
+</span></code></pre></pre>
+<!--
+[panic-hook]: https://github.com/rustwasm/console_error_panic_hook
+-->
+<!--
+## Using a Debugger
+-->
+<h2><a class="header" href="#utiliser-un-débogueur" id="utiliser-un-débogueur">Utiliser un débogueur</a></h2>
+<!--
+Unfortunately, the debugging story for WebAssembly is still immature. On most
+Unix systems, [DWARF][dwarf] is used to encode the information that a debugger
+needs to provide source-level inspection of a running program. There is an
+alternative format that encodes similar information on Windows. Currently, there
+is no equivalent for WebAssembly. Therefore, debuggers currently provide limited
+utility, and we end up stepping through raw WebAssembly instructions emitted by
+the compiler, rather than the Rust source text we authored.
+-->
+<p>Malheureusement, le débogage pour le WebAssembly reste embryonnaire. Dans la
+plupart des systèmes Unix, <a href="http://dwarfstd.org/">DWARF</a> est utilisé pour encoder les
+informations qu'un débogueur a besoin d'avoir pour procéder à l'inspection de la
+source d'un programme en cours d'exécution. Il existe aussi un format alternatif
+qui encode des informations similaires sous Windows. Pour l'instant, il n'y a
+pas d'équivalent pour WebAssembly. C'est pourquoi les débogueurs sont des outils
+limités pour le moment, et nous finissons par passer par des instructions
+WebAssembly brutes émises par le compilateur, plutôt que par le code source Rust
+que nous avons rédigé.</p>
+<!--
+> There is a [sub-charter of the W3C WebAssembly group for
+> debugging][debugging-subcharter], so expect this story to improve in the
+> future!
+-->
+<blockquote>
+<p>Il existe
+<a href="https://github.com/WebAssembly/debugging">une sous-commission du groupe W3C dédiée au débogage</a>,
+donc attendez-vous à ce que les choses s'améliorent à l'avenir !</p>
+</blockquote>
+<!--
+[debugging-subcharter]: https://github.com/WebAssembly/debugging
+[dwarf]: http://dwarfstd.org/
+-->
+<!--
+Nonetheless, debuggers are still useful for inspecting the JavaScript that
+interacts with our WebAssembly, and inspecting raw wasm state.
+-->
+<p>Toutefois, les débogueurs restent utiles pour inspecter le JavaScript qui
+interagit avec notre WebAssembly, et inspecter l'état brut du wasm.</p>
+<!--
+### References
+-->
+<h3><a class="header" href="#documentations-sur-le-débogueur" id="documentations-sur-le-débogueur">Documentations sur le débogueur</a></h3>
+<!--
+* [Firefox Developer Tools — Debugger](https://developer.mozilla.org/en-US/docs/Tools/Debugger)
+* [Microsoft Edge Developer Tools — Debugger](https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide/debugger)
+* [Get Started with Debugging JavaScript in Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/)
+-->
+<ul>
+<li><a href="https://developer.mozilla.org/fr/docs/Outils/D%C3%A9bogueur">Outils de Développement de Firefox —
+Débogueur</a></li>
+<li><a href="https://docs.microsoft.com/fr-fr/microsoft-edge/devtools-guide/debugger">Outils de Développement de Microsoft Edge —
+Débogueur</a></li>
+<li><a href="https://developers.google.com/web/tools/chrome-devtools/javascript/">Débuter dans le Débogage du JavaScript dans Chrome
+DevTools</a></li>
+</ul>
+<!--
+## Avoid the Need to Debug WebAssembly in the First Place
+-->
+<h2><a class="header" href="#eviter-davoir-besoin-de-déboguer-le-webassembly-dans-un-premier-temps" id="eviter-davoir-besoin-de-déboguer-le-webassembly-dans-un-premier-temps">Eviter d'avoir besoin de déboguer le WebAssembly dans un premier temps</a></h2>
+<!--
+If the bug is specific to interactions with JavaScript or Web APIs, then [write
+tests with `wasm-bindgen-test`.][wbg-test]
+-->
+<p>Si le bogue concerne des interactions avec le JavaScript ou des API Web, alors
+<a href="https://rustwasm.github.io/wasm-bindgen/wasm-bindgen-test/index.html">écrivez des tests avec <code>wasm-bindgen-test</code></a>.</p>
+<!--
+If a bug does *not* involve interaction with JavaScript or Web APIs, then try to
+reproduce it as a normal Rust `#[test]` function, where you can leverage your
+OS's mature native tooling when debugging. Use testing crates like
+[`quickcheck`][quickcheck] and its test case shrinkers to mechanically reduce
+test cases. Ultimately, you will have an easier time finding and fixing bugs if
+you can isolate them in a smaller test cases that don't require interacting with
+JavaScript.
+-->
+<p>Si le bogue <em>n'implique pas</em> d'interactions avec JavaScript ou des API Web,
+alors essayez de le reproduire dans une fonction <code>#[test]</code> Rust traditionnelle,
+dans laquelle vous pouvez profiter des outils natifs de votre système
+d'exploitation lorsque vous déboguez. Utilisez des crates pour les tests comme
+<a href="https://crates.io/crates/quickcheck"><code>quickcheck</code></a> et ses cas de test qui réduisent automatiquement les
+cas à tester. Finalement, il vous sera plus facile de trouver et de corriger des
+bogues si vous pouvez les isoler dans des cas de test plus petits et qui ne
+nécessitent pas d'interaction avec le JavaScript.</p>
+<!--
+Note that in order to run native `#[test]`s without compiler and linker errors,
+you will need to ensure that `"rlib"` is included in the `[lib.crate-type]`
+array in your `Cargo.toml` file.
+-->
+<p>Notez toutefois que pour pouvoir exécuter des <code>#[test]</code> natifs sans erreurs de
+compilateur et de liaison, vous aurez besoin de vous assurer que <code>&quot;rlib&quot;</code> soit
+bien présent dans le tableau <code>[lib.crate-type]</code> dans votre fichier <code>Cargo.toml</code>.</p>
+<!--
+```toml
+[lib]
+crate-type ["cdylib", "rlib"]
+```
+-->
+<pre><code class="language-toml">[lib]
+crate-type = [&quot;cdylib&quot;, &quot;rlib&quot;]
+</code></pre>
+<!--
+[quickcheck]: https://crates.io/crates/quickcheck
+[web-sys]: https://rustwasm.github.io/wasm-bindgen/web-sys/index.html
+[wbg-test]: https://rustwasm.github.io/wasm-bindgen/wasm-bindgen-test/index.html
+-->
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../reference/project-templates.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../reference/time-profiling.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../reference/project-templates.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../reference/time-profiling.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="../github-button.js"></script>
+        
+
+        
+
+    </body>
+</html>
