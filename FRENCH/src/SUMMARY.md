@@ -16,3 +16,14 @@
     - [🚧 Tester la vie](./game-of-life/testing.md)
     - [🚧 Débogage](./game-of-life/debugging.md)
     - [🚧 Ajouter de l'interactivité](./game-of-life/interactivity.md)
+    - [💬 Time Profiling](./game-of-life/time-profiling.md)
+    - [💬 Shrinking `.wasm` Size](./game-of-life/code-size.md)
+    - [💬 Publishing to npm](./game-of-life/publishing-to-npm.md)
+
+--------------------------------------------------------------------------------
+
+- [💬 Reference](./reference/index.md)
+    - [💬 Crates You Should Know](./reference/crates.md)
+    - [💬 Tools You Should Know](./reference/tools.md)
+    - [💬 Project Templates](./reference/project-templates.md)
+    - [🚧 Débogage](./reference/debugging.md)
