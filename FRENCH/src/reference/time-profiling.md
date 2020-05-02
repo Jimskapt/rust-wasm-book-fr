@@ -162,7 +162,7 @@ résultats deviendraient compliqués.
 <!-- markdownlint-enable -->
 
 [![Capture d'écran d'un profileur avec les symboles
-Rust](images/game-of-life/profiler-with-rust-names.png)](images/game-of-life/profiler-with-rust-names.png)
+Rust](../images/game-of-life/profiler-with-rust-names.png)](../images/game-of-life/profiler-with-rust-names.png)
 
 <!--
 #### Resources
@@ -248,7 +248,7 @@ navigateur :
 <!-- markdownlint-enable -->
 
 [![Capture d'écran des journaux de
-console.time](images/game-of-life/console-time.png)](images/game-of-life/console-time.png)
+console.time](../images/game-of-life/console-time.png)](../images/game-of-life/console-time.png)
 
 <!--
 Additionally, `console.time` and `console.timeEnd` logs will show up in your
@@ -265,7 +265,7 @@ dans les vues "timeline" ou "chronologie" du profileur de votre navigateur :
 <!-- markdownlint-enable -->
 
 [![Capture d'écran des journaux de
-console.time](images/game-of-life/console-time-in-profiler.png)](images/game-of-life/console-time-in-profiler.png)
+console.time](../images/game-of-life/console-time-in-profiler.png)](../images/game-of-life/console-time-in-profiler.png)
 
 <!--
 [console-time]: https://developer.mozilla.org/en-US/docs/Web/API/Console/time
