@@ -27,3 +27,4 @@
     - [💬 Tools You Should Know](./reference/tools.md)
     - [💬 Project Templates](./reference/project-templates.md)
     - [🚧 Débogage](./reference/debugging.md)
+    - [🚧 Le profilage temporel](./reference/time-profiling.md)

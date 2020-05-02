@@ -5,6 +5,13 @@ français.
 
 | Anglais | Français | Remarques |
 | ------- | -------- | --------- |
-| indirection | indirection | - |
+| benchmark | test de performance | - |
+| call tree | arbre d'appel | - |
+| flame graph | flame graph | - |
 | garbage collector | ramasse-miettes | - |
+| indirection | indirection | - |
+| inlined function | fonction intégrée | - |
+| log | journal | - |
 | monomorphization | monomorphisation | - |
+| profiler | profileur | - |
+| profiling | profilage | - |
