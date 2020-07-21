@@ -5,4 +5,5 @@ français.
 
 | Anglais | Français | Remarques |
 | ------- | -------- | --------- |
-
+| benchmark | comparatif | - |
+| Frames Per Second | images par seconde | - |
