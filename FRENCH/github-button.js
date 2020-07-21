@@ -11,5 +11,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	a.appendChild(i);
 
-	document.querySelector("#menu-bar-sticky-container .right-buttons").appendChild(a);
+	document.querySelector("#menu-bar .right-buttons").appendChild(a);
 });
