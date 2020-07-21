@@ -16,7 +16,7 @@
     - [🚧 Tester la vie](./game-of-life/testing.md)
     - [🚧 Débogage](./game-of-life/debugging.md)
     - [🚧 Ajouter de l'interactivité](./game-of-life/interactivity.md)
-    - [💬 Time Profiling](./game-of-life/time-profiling.md)
+    - [🚧 Le profilage temporel](./game-of-life/time-profiling.md)
     - [💬 Shrinking `.wasm` Size](./game-of-life/code-size.md)
     - [💬 Publishing to npm](./game-of-life/publishing-to-npm.md)
 

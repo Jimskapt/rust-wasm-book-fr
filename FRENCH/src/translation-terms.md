@@ -8,6 +8,7 @@ français.
 | benchmark | test de performance | - |
 | call tree | arbre d'appel | - |
 | flame graph | flame graph | - |
+| Frames Per Second | images par seconde | - |
 | garbage collector | ramasse-miettes | - |
 | indirection | indirection | - |
 | inlined function | fonction intégrée | - |
