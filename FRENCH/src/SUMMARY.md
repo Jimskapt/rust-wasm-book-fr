@@ -23,7 +23,7 @@
 --------------------------------------------------------------------------------
 
 - [🚧 Référence](./reference/index.md)
-    - [💬 Crates You Should Know](./reference/crates.md)
+    - [🚧 Les crates que vous devriez connaître](./reference/crates.md)
     - [💬 Tools You Should Know](./reference/tools.md)
     - [💬 Project Templates](./reference/project-templates.md)
     - [🚧 Débogage](./reference/debugging.md)

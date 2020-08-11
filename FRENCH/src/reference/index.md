@@ -1,3 +1,9 @@
+> # 🚧 Attention, peinture fraîche !
+>
+> Cette page a été traduite par une seule personne et n'a pas été relue et
+> vérifiée par quelqu'un d'autre ! Les informations peuvent par exemple être
+> erronées, être formulées maladroitement, ou contenir d'autres types de fautes.
+
 <!--
 # Reference
 -->
