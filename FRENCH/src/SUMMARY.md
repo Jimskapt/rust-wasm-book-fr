@@ -17,7 +17,7 @@
     - [🚧 Débogage](./game-of-life/debugging.md)
     - [🚧 Ajouter de l'interactivité](./game-of-life/interactivity.md)
     - [🚧 Le profilage temporel](./game-of-life/time-profiling.md)
-    - [💬 Shrinking `.wasm` Size](./game-of-life/code-size.md)
+    - [🚧 Réduire la taille des `.wasm`](./game-of-life/code-size.md)
     - [💬 Publishing to npm](./game-of-life/publishing-to-npm.md)
 
 --------------------------------------------------------------------------------
@@ -28,3 +28,4 @@
     - [💬 Project Templates](./reference/project-templates.md)
     - [🚧 Débogage](./reference/debugging.md)
     - [🚧 Le profilage temporel](./reference/time-profiling.md)
+    - [💬 Réduire la taille des `.wasm`](./reference/code-size.md)
