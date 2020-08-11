@@ -22,7 +22,7 @@
 
 --------------------------------------------------------------------------------
 
-- [💬 Reference](./reference/index.md)
+- [🚧 Référence](./reference/index.md)
     - [💬 Crates You Should Know](./reference/crates.md)
     - [💬 Tools You Should Know](./reference/tools.md)
     - [💬 Project Templates](./reference/project-templates.md)
