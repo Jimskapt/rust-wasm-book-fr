@@ -18,7 +18,7 @@
     - [🚧 Ajouter de l'interactivité](./game-of-life/interactivity.md)
     - [🚧 Le profilage temporel](./game-of-life/time-profiling.md)
     - [🚧 Réduire la taille des `.wasm`](./game-of-life/code-size.md)
-    - [💬 Publishing to npm](./game-of-life/publishing-to-npm.md)
+    - [🚧 Publier sur npm](./game-of-life/publishing-to-npm.md)
 
 --------------------------------------------------------------------------------
 
