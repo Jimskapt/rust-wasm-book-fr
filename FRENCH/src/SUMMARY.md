@@ -24,7 +24,7 @@
 
 - [🚧 Référence](./reference/index.md)
     - [🚧 Les crates que vous devriez connaître](./reference/crates.md)
-    - [💬 Tools You Should Know](./reference/tools.md)
+    - [🚧 Les outils que vous devriez connaître](./reference/tools.md)
     - [💬 Project Templates](./reference/project-templates.md)
     - [🚧 Débogage](./reference/debugging.md)
     - [🚧 Le profilage temporel](./reference/time-profiling.md)
