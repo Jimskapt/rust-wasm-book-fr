@@ -25,7 +25,7 @@
 - [🚧 Référence](./reference/index.md)
     - [🚧 Les crates que vous devriez connaître](./reference/crates.md)
     - [🚧 Les outils que vous devriez connaître](./reference/tools.md)
-    - [💬 Project Templates](./reference/project-templates.md)
+    - [🚧 Les gabarits de projet](./reference/project-templates.md)
     - [🚧 Débogage](./reference/debugging.md)
     - [🚧 Le profilage temporel](./reference/time-profiling.md)
     - [💬 Réduire la taille des `.wasm`](./reference/code-size.md)
