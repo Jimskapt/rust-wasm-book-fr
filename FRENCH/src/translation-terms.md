@@ -5,4 +5,6 @@ français.
 
 | Anglais | Français | Remarques |
 | ------- | -------- | --------- |
-
+| indirection | indirection | - |
+| garbage collector | ramasse-miettes | - |
+| monomorphization | monomorphisation | - |
